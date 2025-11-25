@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Prestamos - Anticipo Express</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/admi.css' %}">
+</head>
+<body>
+    <aside class="barra-lateral"> <!--barra de navegacion-->
+        <h2 class="logo">🧩 Anticipo Express</h2><!-- Logo del sistema -->
+    
+        <ul class="menu"> <!--menu izquierdo-->
+            <li><a href="{% url 'prestamos_gestion' %}" class="activo">Gestion de Préstamos</a></li>
+
+    <!-- Botón para cerrar sesión -->
+        <a href="{% url 'inicio_login' %}" class="logout">Cerrar Sesión</a>
+    </aside>
+
+<main class="contenido"> <!--contenedor principal -->
+
+        <header class="encabezado"> <!--encabezado principal-->
+            <h1>Panel de Préstamos</h1> <!-- Título de la página -->
+                <div class="usuario">  
+                    <p>¡Hola, Administrador de Préstamos!</p> <!-- Saludo al usuario -->
+                <div class="avatar">AP</div> <!-- Avatar del usuario -->
+            </div>
+        </header>
+
+        <div class="container">
+    <!-- ==== CARDS SUPERIORES ==== -->
+    <div class="cards">
+        <div class="card acento-azul">
+            <div class="label">Préstamos Activos</div>
+            <div class="value">4</div>
+        </div>
+
+        <div class="card acento-amarillo">
+            <div class="label">Próximo Vencimiento</div>
+            <div class="value">1</div>
+        </div>
+
+        <div class="card acento-verde">
+            <div class="label">Monto Total Pendiente</div>
+            <div class="value">$5.700,50</div>
+        </div>
+    </div>
+
+    <!-- ==== LISTADO DE PRÉSTAMOS ==== -->
+    <div class="listado-prestamos">
+        <div class="encabezado-listado">
+            <h2>Listado de Préstamos</h2>
+            <div class="top-controls">
+                <select aria-label="Filtrar por estado">
+                    <option>Filtrar por Estado (Todos)</option>
+                    <option>Activo</option>
+                    <option>Pronto Vencimiento</option>
+                    <option>Saldado</option>
+                </select>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID PRÉSTAMO</th>
+                    <th>CLIENTE</th>
+                    <th>MONTO</th>
+                    <th>CUOTAS RESTANTES</th>
+                    <th>FECHA PRÓXIMO PAGO</th>
+                    <th>ESTADO</th>
+                    <th>ACCIÓN</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr>
+                        <td>L-001</td>
+                        <td>Ana María Pérez</td>
+                        <td>$1.200,00</td>
+                        <td>5</td>
+                        <td>2025-10-25</td>
+                        <td><span class="estado activo">Activo</span></td>
+                        <td><a class="accion" href="#">Registrar Pago</a></td>
+                    </tr>
+                    <tr>
+                        <td>L-002</td>
+                        <td>Juan Carlos López</td>
+                        <td>$550,50</td>
+                        <td>1</td>
+                        <td>2025-10-22</td>
+                        <td><span class="estado pronto">Pronto Vencimiento</span></td>
+                        <td><a class="accion" href="#">Registrar Pago</a></td>
+                    </tr>
+                    <tr>
+                        <td>L-003</td>
+                        <td>Elena Sofía Torres</td>
+                        <td>$3.000,00</td>
+                        <td>10</td>
+                        <td>2025-11-01</td>
+                        <td><span class="estado activo">Activo</span></td>
+                        <td><a class="accion" href="#">Registrar Pago</a></td>
+                    </tr>
+                    <tr>
+                        <td>L-004</td>
+                        <td>Carlos Ruiz</td>
+                        <td>$0,00</td>
+                        <td>0</td>
+                        <td>2025-10-10</td>
+                        <td><span class="estado saldado">Saldado</span></td>
+                        <td>Completado</td>
+                    </tr>
+                    <tr>
+                        <td>L-005</td>
+                        <td>Marta Gómez</td>
+                        <td>$950,00</td>
+                        <td>3</td>
+                        <td>2025-11-05</td>
+                        <td><span class="estado activo">Activo</span></td>
+                        <td><a class="accion" href="#">Registrar Pago</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

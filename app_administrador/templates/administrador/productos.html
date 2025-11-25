@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario y Productos - Anticipo Express</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+
+</head>
+<body>
+<!-- Barra lateral de navegación -->
+    <aside class="barra-lateral">
+        <h2 class="logo"> <!--contenedor principal de la barra lateral-->
+            <span class="icono">🧩</span> <!-- icono-->
+            <span class="texto">Anticipo Express</span> <!--texto del nombre del sistema-->
+        </h2>
+
+        <ul class="menu">
+            <li><a href="{% url 'admin_inicio' %}">🏠 Inicio</a></li>
+            <li><a href="{% url 'admin_clientes' %}">👥 Gestión de Clientes</a></li>
+            <li><a href="{% url 'admin_productos' %}" class="activo">📦 Inventario y Productos</a></li>
+            <li><a href="{% url 'admin_cuentas' %}">💰 Cuentas por Cobrar</a></li>
+            <li><a href="{% url 'admin_reportes' %}">📊 Reportes de Ingreso</a></li>
+        </ul>
+
+        <a href="{% url 'inicio_login' %}" class="logout">Cerrar Sesión</a>
+
+    </aside>
+
+    <main class="contenido"> <!-- seccion principal de la pagina-->
+        <header class="encabezado">
+            <h1>Inventario y Productos</h1> <!--titulo de la pagina-->
+                <div class="usuario">  
+                    <p>¡Hola, Administrador!</p> <!-- saludo al usuario-->
+                <div class="avatar">AD</div> <!-- avatar del usuario-->
+            </div>
+        </header>
+
+        <section class="paneles">
+            <!-- Panel de productos -->
+            <div class="panel-productos">
+                <h3>Gestión de Productos</h3>
+                <p>Gestiona nombre, marca, estado, precio y cantidad de los productos.</p>
+
+            <form class="form-productos">
+                <div class="fila">
+                    <input type="text" placeholder="Nombre del Producto">
+                    <input type="text" placeholder="Marca">
+                </div>
+                <div class="fila">
+                    <input type="number" placeholder="Precio ($)">
+                    <input type="number" placeholder="Cantidad (Stock)">
+                </div>
+                <div class="fila">
+                    <select>
+                        <option>Seleccionar Categoría</option>
+                        <option>Nuevos</option>
+                        <option>Usados</option>
+                    </select>
+                    <select>
+                        <option>Estado: Nuevo</option>
+                        <option>Usado</option>
+                    </select>
+            </div>
+            <button type="submit">Guardar Producto</button>
+            </form>
+
+            <div class="registro-condicion">
+                <h4>Registro de Condición</h4>
+                <p>Determina el valor y precio de venta de electrodomésticos que llegan.</p>
+                <textarea placeholder="Descripción detallada de la condición y estado del electrodoméstico..."></textarea>
+                <button>Registrar Condición y Valorar</button>
+            </div>
+        </div>
+
+        <!-- Panel de categorías -->
+            <div class="panel-categorias">
+                <h3>Gestión de Categorías</h3>
+                <p>Mantén el catálogo organizado.</p>
+
+                <input type="text" placeholder="Nombre de Categoría">
+                <button>Agregar Categoría</button>
+
+                <ul class="lista-categorias">
+                    <li>Neveras <a href="#" class="eliminar">Eliminar</a></li>
+                    <li>Televisores <a href="#" class="eliminar">Eliminar</a></li>
+                    <li>Lavadoras <a href="#" class="eliminar">Eliminar</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

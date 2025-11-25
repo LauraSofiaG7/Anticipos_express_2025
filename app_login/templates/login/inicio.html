@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+
+</head>
+<body>
+    <header>
+        <div class="fondo">
+        <h1>ANTICIPO EXPRESS</h1>
+            <section class="hero">
+                <h2>Descubre todo lo que tenemos para ti</h2>
+                <a class="boton" href="{% url 'contraseña' %}">Iniciar sesión</a>
+
+            </section>
+            <footer>
+                <p>© 2025 Mi Sitio Web</p>
+            </footer>
+        </div>
+    </header>
+</body>
+</html>

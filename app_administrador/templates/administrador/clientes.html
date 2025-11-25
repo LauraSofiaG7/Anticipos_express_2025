@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Clientes - Anticipo Express</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+
+</head>
+<body>
+    <!-- Barra lateral de navegación -->
+    <aside class="barra-lateral">
+        <h2 class="logo"> <!--contenedor principal de la barra lateral-->
+            <span class="icono">🧩</span> <!-- icono-->
+            <span class="texto">Anticipo Express</span> <!--texto del nombre del sistema-->
+        </h2>
+
+        <ul class="menu">
+            <li><a href="{% url 'admin_inicio' %}">🏠 Inicio</a></li>
+            <li><a href="{% url 'admin_clientes' %}" class="activo">👥 Gestión de Clientes</a></li>
+            <li><a href="{% url 'admin_productos' %}">📦 Inventario y Productos</a></li>
+            <li><a href="{% url 'admin_cuentas' %}">💰 Cuentas por Cobrar</a></li>
+            <li><a href="{% url 'admin_reportes' %}">📊 Reportes de Ingreso</a></li>
+        </ul>
+
+        <a href="{% url 'inicio_login' %}" class="logout">Cerrar Sesión</a>
+    </aside>
+
+    <main class="contenido"> <!-- seccion principal de la pagina-->
+        <header class="encabezado">
+            <h1>Gestion de Clientes</h1> <!--titulo de la pagina-->
+                <div class="usuario">  
+                    <p>¡Hola, Administrador!</p> <!-- saludo al usuario-->
+                <div class="avatar">AD</div> <!-- avatar del usuario-->
+            </div>
+        </header>
+        <!--seccion principal de gestion de clientes-->
+
+            <div class="contenedor-clientes"> <!--caja con sombra blanca-->
+
+                <!-- Barra de busqueda-->
+                <div class="buscador">
+                    <input type="text" placeholder="Buscar Cliente..." > <!--campo de busqueda-->
+                    <button class="btn-verde">Agregar Nuevo Cliente</button> <!--boton de añadir cliente-->
+                </div>
+                <p class="descripcion">Usa esta seccion para gestionar datos y marcar cuentas como saldados</p>
+
+                <!-- Tabla de clientes-->
+                <table class="tabla-clientes"> <!--Estructura tipo tabla-->
+                    <thead> <!--encabezado de la tabla-->
+                        <tr> <!-- fila de encabezado-->
+                            <th>Nombre</th> <!--columas-->
+                            <th>Telefono</th>
+                            <th>Deuda Pendiente</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody> <!-- cuerpo de la tabla-->
+                        <tr> <!--fila cliente 1-->
+                            <td>Juan Perez</td>
+                            <td>310 123 4567</td>
+                            <td class="rojo">$800,000 COP </td> <!--deuda en rojo-->
+                            <td>
+                                <a href="#" class="editar">Editar</a> <!--editar enlace-->
+                                <button class="btn-saldar">Marcar Saldada</button> <!--boton saltar-->
+                            </td>
+                        </tr>
+                        <tr> <!--fila columna 2-->
+                            <td>Ana Gomez</td>
+                            <td>320 987 6543</td>
+                            <td class="verde">$ 0 COP</td> <!--deuda en verde-->
+                            <td>
+                                <a href="#" class="editar">Editar</a> <!--enlace de editar-->
+                                <span class="saldada">Saldada</span> <!--etiqueta saldada-->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>
+        </section> 
+    </main> 
+</body>
+</html>

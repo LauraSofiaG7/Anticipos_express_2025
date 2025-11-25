@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caja Iniciada - Anticipo Express</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/cajero.css' %}">
+</head>
+<body>
+    <aside class="barra-lateral"> <!--barra de navegacion-->
+        <h2 class="logo">🧩 Anticipo Express</h2><!-- Logo del sistema -->
+        <ul class="menu"> <!--menu izquierdo-->
+            <li><a href="{% url 'ventas_del_dia' %}" class="activo">Ventas del Día</a></li>
+
+
+    <!-- Botón para cerrar sesión -->
+        <a href="{% url 'inicio_login' %}" class="logout">Cerrar Sesión</a>
+    </aside>
+
+    <main class="contenido"> <!--contenedor principal -->
+
+        <header class="encabezado"> <!--encabezado principal-->
+            <h1>Ventas del Dia</h1> <!-- Título de la página -->
+                <div class="usuario">  
+                    <p>¡Hola, Cajero!</p> <!-- Saludo al usuario -->
+                <div class="avatar">C</div> <!-- Avatar del usuario -->
+            </div>
+        </header>
+
+        <!-- TARJETAS SUPERIORES -->
+        <div class="tarjetas">
+
+            <div class="tarjeta">
+                <div class="icono azul">📷</div>
+                <div>
+                    <h3>Fondo Inicial</h3>
+                    <p class="valor">$123344.00</p>
+                </div>
+            </div>
+
+            <div class="tarjeta">
+                <div class="icono verde">$</div>
+                <div>
+                    <h3>Ventas en Efectivo</h3>
+                    <p class="valor">$0.00</p>
+                </div>
+            </div>
+
+            <div class="tarjeta resaltado">
+                <div class="icono morado">⚖️</div>
+                <div>
+                    <h3>Total en Caja (Esperado)</h3>
+                    <p class="valor">$123344.00</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SECCION PRINCIPAL -->
+        <div class="layout">
+
+            <div class="contenedor-ventas-dia">
+                <h2>Ventas del Día</h2>
+                <div class="linea"></div>
+
+                <p class="texto-vacio">Aún no hay ventas.</p>
+
+                <button class="btn-cierre-caja">Realizar Cierre de Caja</button>
+            </div>
+
+            <div class="panel-venta">
+                <h2>Registrar Venta</h2>
+                    <div class="linea"></div>
+
+                <label>Buscar Producto</label>
+
+                <div class="busqueda">
+                    <input type="text" placeholder="Nombre o código del producto...">
+                    <button class="btn-buscar">Buscar</button>
+                </div>
+
+                <button class="btn-registrar">Registrar Pago</button>
+            </div>
+
+            <!-- MODAL DE CIERRE DE CAJA -->
+    <div id="modalCierreCaja" class="modal">
+    <div class="modal-contenido">
+        <h2>Cierre Total de Ventas</h2>
+        <p>Este es el resumen final del día. Compara estos montos con el conteo manual.</p>
+
+        <div class="resumen">
+            <p><strong>Fondo Inicial:</strong> <span id="fondoInicialModal">$123344.00</span></p>
+            <p><strong>Total Ventas en Efectivo:</strong> <span id="ventasEfectivoModal">$0.00</span></p>
+        <hr>
+        <p class="total"><strong>Total Final Esperado:</strong> <span id="totalFinalModal">$123344.00</span></p>
+    </div>
+
+        <button id="btnFinalizarDia" class="btn-rojo">Finalizar Día</button>
+        <button id="btnCerrarModal" class="btn-cancelar">Cancelar</button>
+    </div>
+</div>
+    </main>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const btnCierreCaja = document.querySelector(".btn-cierre-caja");
+    const modal = document.getElementById("modalCierreCaja");
+    const btnCerrarModal = document.getElementById("btnCerrarModal");
+    const btnFinalizarDia = document.getElementById("btnFinalizarDia");
+
+    btnCierreCaja.addEventListener("click", () => {
+        modal.style.display = "flex";
+    });
+
+    btnCerrarModal.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    btnFinalizarDia.addEventListener("click", () => {
+        alert("Cierre de caja finalizado correctamente ✅");
+        window.location.href = "{% url 'inicio_login' %}";
+    });
+
+    window.addEventListener("click", (e) => {
+        if (e.target === modal) modal.style.display = "none";
+    });
+});
+</script>
+
+</body>
+</html>

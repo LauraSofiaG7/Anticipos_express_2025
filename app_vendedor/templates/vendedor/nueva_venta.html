@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Venta/POS - Anticipo Express</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/vendedor.css' %}">
+</head>
+<body>
+    <!-- Barra lateral -->
+    <aside class="barra-lateral">
+        <h2 class="logo">🧩 Anticipo Express</h2>
+        <ul class="menu">
+            <li><a href="{% url 'vendedor_nueva_venta' %}" class="activo"> Nueva Venta </a></li>
+
+            <li><a href="{% url 'vendedor_consulta_productos' %}">
+                Consulta de Productos
+            </a></li>
+
+            <li><a href="{% url 'vendedor_revision_deudas' %}"> Revisión de Deudas </a></li> 
+        </ul>
+
+        <a href="{% url 'inicio_login' %}" class="logout">Cerrar Sesión</a>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="contenido">
+
+        <!-- Encabezado -->
+        <header class="encabezado">
+            <h1>Registro de Nueva Venta</h1>
+            <div class="usuario">
+                <p>¡Hola, Vendedor!</p>
+                <div class="avatar">VE</div>
+            </div>
+        </header>
+
+        <!-- Contenedor de dos columnas -->
+        <div class="contenido-principal">
+            <!-- Columna izquierda -->
+            <section class="seccion-productos">
+                <h2>Selección de Productos</h2>
+                <input type="text" placeholder="Buscar producto por código, nombre o marca...">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Refrigeradora Smart X1</td>
+                            <td>$ 1,500,000</td>
+                            <td>15</td>
+                            <td><a href="#">Añadir</a></td>
+                        </tr>
+                        <tr>
+                            <td>Lavadora Automática 12Kg</td>
+                            <td>$ 850,000</td>
+                            <td>4</td>
+                            <td><a href="#">Añadir</a></td>
+                        </tr>
+                        <tr>
+                            <td>Televisor LED 50"</td>
+                            <td>$ 1,000,000</td>
+                            <td>2</td>
+                            <td><a href="#">Añadir</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div>
+                    <h3>Cesta de Compra (Carrito)</h3>
+                        <div class="carrito-contenedor">
+                        <div class="carrito-item">
+                            <span>Refrigeradora Smart X1 (x1)</span>
+                                <strong>$ 1,500,000</strong>
+                        </div>
+                        <div class="carrito-item">
+                            <span>Lavadora Automática 12Kg (x1)</span>
+                                <strong>$ 850,000</strong>
+                        </div>
+                </div>
+
+            </section>
+            <!-- Columna derecha -->
+            <aside class="detalle-transaccion">
+                <h2>Detalle de la Transacción</h2>
+
+                <label for="cliente">Cliente:</label>
+                <select id="cliente" name="cliente">
+                    <option>Seleccionar Cliente Existente</option>
+                    <option>Juan Pérez (ID: 101)</option>
+                    <option>Nuevo Cliente</option>
+                </select>
+                <p><a href="#">Ver Deuda del Cliente</a></p>
+
+                <div class="resumen">
+                    <p>SUBTOTAL: <strong>$ 2,350,000 COP</strong></p>
+                    <p>TOTAL: <strong>$ 2,350,000 COP</strong></p>
+                </div>
+
+                <label for="metodo">Método de Pago:</label>
+                <select id="metodo" name="metodo">
+                    <option>Contado (Efectivo/Tarjeta)</option>
+                    <option>Venta Fiada (Crédito)</option>
+                </select>
+
+                <button type="button">REGISTRAR VENTA</button>
+                <p class="nota">Nota: Si es Venta Fiada, el cajero deberá gestionar el pago después.</p>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>

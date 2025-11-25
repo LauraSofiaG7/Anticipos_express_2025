@@ -1,0 +1,561 @@
+/*margenes y paddings para todos los elementos*/
+*{
+    margin: 0; /*elimina margenes predeterminados*/
+    padding: 0; /*elimina relleno predeterminado*/
+    box-sizing: border-box; /*hace que los tamaños incluyan bordes y padding*/
+    font-family: "poppins", sans-serif; /*fuente de letra moderna*/
+}
+
+/*fondo general*/
+body{
+    display: flex; /*coloca la barra lateral y el contenido en la misma fila*/
+    min-height: 100vh; /*asegura que ocupe toda la altura de la pantalla*/
+    background: linear-gradient(135deg, #0b1d3a, #13294b, #1b3a60 ); /*color de fondo*/
+    color: #fff; /*color de texto blanco*/
+}
+
+/*barra de navegacion*/
+.barra-lateral{
+    width: 240px; /*ancho fijo de la barra lateral*/
+    background-color: #1e293b; /*color de fondo oscuro*/
+    display: flex; /*organiza los elementos verticalmente*/
+    flex-direction: column; /*coloca los elementos en columna*/
+    padding: 20px; /*espacio interno*/
+    border-radius: 0 20px 20px 0; /*bordes redondeados en la esquina derecha*/
+}
+
+/*logo*/
+.barra-lateral .logo{
+    color: #ffffff; /*color blanco*/
+    font-size: 1.2em; /*tamaño de fuente*/
+    margin-bottom: 30px; /*espacio debajo del logo*/
+    text-align: center; /*centrar el texto*/
+}
+
+/*menu lateral*/
+.menu{
+    list-style: none; /*elimina los puntos de la lista*/
+}
+
+/*cada elemento del menu*/
+.menu li{
+    margin: 12px 0; /*espacio entre elementos*/
+}
+
+/*enlaces del menu*/
+.menu li a{
+    display: block; /*hace que el enlace ocupe todo el ancho*/
+    text-decoration: none; /*elimina el subrayado*/
+    color: #ffffff; /*color gris claro*/
+    padding: 10px 15px; /*espacio interno*/
+    border-radius: 10px; /*bordes redondeados*/
+    transition: 0.3s; /*transicion suave*/
+}
+
+/*efecto cuando pasa el mause sobre los enlaces*/
+.menu li a:hover{
+    background-color: #334155; /*fondo mas claro*/
+}
+
+/*cerrar sesion*/
+.logout{
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    background-color: #ef4444; /*fondo rojo*/
+    border: none; /*sin borde*/
+    color: #ffffff; /*texto blanco*/
+    padding: 12px 20px; /*altura del boton*/
+    border-radius: 8px; /*bordes redondeados*/
+    font-weight: bold; /*texto en negrita*/
+    cursor: pointer; /*cambia el cursor al pasar por encima*/
+    transition: 0.3s; /*transicion suave*/
+    margin-top: 20px; /*espacio*/
+}
+
+/*efecto al pasar el mause sobre el boton de cerrar sesion*/
+.logout:hover{
+    background-color: #dc2626; /*fondo rojo mas oscuro*/
+}
+
+/*contenido principal*/
+.contenido{
+    flex: 1; /*ocupado todo el espacio libre al lado de la barra*/
+    padding: 30px; /*espacio interno*/
+}
+
+/*titulo y saludo*/
+.encabezado{
+    display: flex; /*coloca el titulo y el usuario en la misma fila*/
+    justify-content: space-between; /*espacio entre el titulo y el usuario*/
+    align-items: center; /*centrar verticalmente*/
+    padding: 10px 25px; /*espacio interno*/
+    background: linear-gradient(to right, #1a2435, #0f172a); /*fondo degradado*/
+    margin-bottom: 50px; /*espacio debajo del encabezado*/
+    border-radius: 15px;
+
+    /* linea inferior con degradado */
+
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(to right, #a855f7, #3b82f6);
+    border-image-slice: 1;
+}
+
+/*titulo resumen ejecutivo*/
+.encabezado h1{
+    font-size: 1.8em; /*tamaño grande*/
+    font-weight: 700; /*texto en negrita*/
+}
+
+/*texto hola administrador*/
+.encabezado p{
+    font-size: 1em; /*tamaño normal*/
+    color: #cbd5e1; /*color gris claro*/
+}
+
+/* contenido del usuario*/
+.usuario{
+    display: flex; 
+    align-items: center;
+    gap: 10px; /*esapcio entre texto y avatar*/
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* avatar circular del administrador*/
+.avatar{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #c084fc;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    box-shadow: 0 0 8px rgb(160, 120, 255, 0.4);
+}
+
+/*CONTENEDOR NUEVA VENTA*/
+/* ====== CONTENEDOR PRINCIPAL ====== */
+.contenido-principal {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+/* ====== SECCIÓN PRODUCTOS ====== */
+.seccion-productos {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.seccion-productos h2 {
+    font-size: 1.2rem;
+    color: #1f2937;
+    margin-bottom: 15px;
+}
+
+.seccion-productos input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.seccion-productos table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.seccion-productos th {
+    text-align: left;
+    color: #6b7280;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.seccion-productos td {
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f5f9;
+    color: rgb(0, 0, 0);
+}
+
+.seccion-productos td:nth-child(3) {
+    font-weight: 600;
+}
+
+.seccion-productos td:nth-child(3):not(:empty) {
+    color: #22c55e;
+}
+
+.seccion-productos tr:nth-child(2) td:nth-child(3) {
+    color: #f97316; /* stock bajo */
+}
+
+.seccion-productos tr:nth-child(3) td:nth-child(3) {
+    color: #ef4444; /* stock crítico */
+}
+
+.seccion-productos a {
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.seccion-productos a:hover {
+    text-decoration: underline;
+}
+
+/* ====== CARRITO ====== */
+.seccion-productos h3 {
+    font-size: 1rem;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.carrito-contenedor {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    padding: 15px 20px;
+}
+
+.carrito-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.carrito-item strong {
+    font-weight: 600;
+    color: #111827;
+}
+
+
+/* ====== DETALLE DE TRANSACCIÓN ====== */
+.detalle-transaccion {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.detalle-transaccion h2 {
+    font-size: 1.2rem;
+    color: #b45309;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.detalle-transaccion label {
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: #374151;
+}
+
+.detalle-transaccion select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+}
+
+.detalle-transaccion a {
+    color: #2563eb;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.detalle-transaccion a:hover {
+    text-decoration: underline;
+}
+
+/* ====== RESUMEN DE TOTALES ====== */
+.resumen {
+    background-color: #fefce8;
+    border: 1px solid #fef3c7;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    }
+
+.resumen p {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    color: #78350f;
+}
+
+.resumen strong {
+    color: #78350f;
+}
+
+/* ====== BOTÓN DE REGISTRO ====== */
+.detalle-transaccion button {
+    width: 100%;
+    background-color: #d97706;
+    color: white;
+    font-weight: 700;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.detalle-transaccion button:hover {
+    background-color: #b45309;
+}
+
+.nota {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 10px;
+}
+
+/*CONTENEDOR CONSULTA PRODUCTOS */
+/* CONTENEDOR PRINCIPAL */
+.contenedor-productos {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Texto superior */
+.contenedor-productos > p {
+    color: #5f6b7a;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Barra de filtros */
+.contenedor-productos > div {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* Input y Selects */
+.contenedor-productos input,
+.contenedor-productos select {
+    padding: 10px 14px;
+    font-size: 14px;
+    border: 1px solid #d5dce3;
+    border-radius: 8px;
+    background: #fff;
+    outline: none;
+}
+
+.contenedor-productos input:focus,
+.contenedor-productos select:focus {
+    border-color: #4a90e2;
+}
+
+/* TABLA */
+.contenedor-productos table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Encabezados */
+.contenedor-productos thead th {
+    text-align: left;
+    padding: 14px;
+    font-size: 13px;
+    color: #65727f;
+    background: #f6f8fa;
+    font-weight: 600;
+}
+
+/* Filas */
+.contenedor-productos tbody tr {
+    border-bottom: 1px solid #e8edf1;
+}
+
+.contenedor-productos tbody td {
+    padding: 14px;
+    font-size: 14px;
+    color: #323842;
+}
+
+/* ETIQUETAS DE CONDICIÓN */
+.nuevo {
+    color: #1a7f37;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.usado {
+    color: #db2d2d;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* STOCK */
+.stock .verde{
+    color: #1a7f37;
+    font-weight: 600;
+}
+
+.stock .rojo {
+    color: #d9534f;
+    font-weight: 600;
+}
+
+/*CONTENEDOR REVISION DE DEUDAS*/
+
+/* ======= CONTENEDOR PRINCIPAL (TODO EL BLOQUE BLANCO) ======= */
+.main-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 30px 40px;
+}
+
+/* ======= BARRA SUPERIOR ======= */
+.top-bar {
+    margin-bottom: 25px;
+}
+
+.top-bar p {
+    font-size: 15px;
+    color: #4b5563;
+    margin-bottom: 12px;
+}
+
+.top-bar input {
+    padding: 10px 12px;
+    width: 60%;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.top-bar button {
+    padding: 10px 18px;
+    background: #8b3dff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.top-bar button:hover {
+    background: #732fd1;
+}
+
+/* ======= CONTENEDOR SECUNDARIO (BORDE PUNTEADO) ======= */
+.deudas-container {
+    background: #f9fafb;
+    border: 2px dashed #d1d5db;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+/* ======= ENCABEZADO ======= */
+.deudas-container h3 {
+    margin-top: 0;
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+/* ======= BLOQUE TOTAL ADEUDADO ======= */
+.deuda-total {
+    background: #ffe5e5;
+    border: 1px solid #f1b0b0;
+    padding: 18px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.deuda-total span {
+    display: block;
+    font-weight: bold;
+    color: #a60000;
+    font-size: 14px;
+}
+
+.deuda-total .monto {
+    font-size: 32px;
+    font-weight: 800;
+    color: #a60000;
+}
+
+/* ======= TABLA ======= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+th {
+    font-size: 13px;
+    color: #555;
+    text-transform: uppercase;
+    background: #fdf5f5;
+}
+
+td {
+    font-size: 14px;
+    background: #fff;
+}
+
+td:nth-child(2) {
+    color: #b50000;
+    font-weight: 600;
+}
+
+.vencido {
+    color: #ff5c00;
+    font-weight: bold;
+}
+
+/* ======= RECOMENDACIÓN ======= */
+.recomendacion {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #c10000;
+    background: #fff7f7;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 4px solid #ff3b3b;
+}

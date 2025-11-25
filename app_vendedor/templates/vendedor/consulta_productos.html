@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Producto - Anticipo Express</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/vendedor.css' %}">
+</head>
+<body>
+    <aside class="barra-lateral"> <!--barra de navegacion-->
+        <h2 class="logo">🧩 Anticipo Express</h2><!-- Logo del sistema -->
+    
+        <ul class="menu">
+    <li><a href="{% url 'vendedor_nueva_venta' %}"> Nueva Venta </a></li>
+
+    <li><a href="{% url 'vendedor_consulta_productos' %}" class="activo">
+        Consulta de Productos
+    </a></li>
+
+    <li><a href="{% url 'vendedor_revision_deudas' %}"> Revisión de Deudas </a></li> 
+</ul>
+
+    <!-- Botón para cerrar sesión -->
+        <a href="{% url 'inicio_login' %}" class="logout">Cerrar Sesión</a>
+    </aside>
+
+<main class="contenido"> <!--contenedor principal -->
+
+        <header class="encabezado"> <!--encabezado principal-->
+            <h1>Consulta de Productos y Stock</h1> <!-- Título de la página -->
+                <div class="usuario">  
+                    <p>¡Hola, Vendedor!</p> <!-- Saludo al usuario -->
+                <div class="avatar">VE</div> <!-- Avatar del usuario -->
+            </div>
+        </header>
+
+        <div class="contenedor-productos">
+            <p>Filtra productos por marca, modelo, y condición para encontrar la mejor opción para el cliente.</p>
+        <div>
+            <input type="text" placeholder="Buscar por Nombre/Modelo">
+
+        <select>
+            <option>Filtrar por Marca</option>
+            <option>Samsung</option>
+            <option>LG</option>
+            <option>Haceb</option>
+        </select>
+
+        <select>
+            <option>Filtrar por Categoría</option>
+            <option>Neveras</option>
+            <option>Televisores</option>
+            <option>Lavadoras</option>
+        </select>
+
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+            <th>PRODUCTO</th>
+            <th>MARCA</th>
+            <th>CONDICIÓN</th>
+            <th>PRECIO VENTA</th>
+            <th>STOCK</th>
+            </tr>
+        </thead>
+            <tbody class="stock">
+                <tr>
+                    <td>Refrigeradora Smart X1</td>
+                    <td>Samsung</td>
+                    <td><span class="nuevo">Nuevo</span></td>
+                    <td>$ 1,500,000</td>
+                    <td class="verde">15</td>
+                </tr>
+                <tr>
+                    <td>Televisor LED 50"</td>
+                    <td>LG</td>
+                    <td><span class="usado">Usado</span></td>
+                    <td>$ 1,000,000</td>
+                    <td class="rojo">2</td>
+                </tr>
+                <tr>
+                    <td>Lavadora Automática 12Kg</td>
+                    <td>Haceb</td>
+                    <td><span class="nuevo">Nuevo</span></td>
+                    <td>$ 850,000</td>
+                    <td class="rojo">4</td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
