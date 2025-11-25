@@ -1,0 +1,881 @@
+/*margenes y paddings para todos los elementos*/
+*{
+    margin: 0; /*elimina margenes predeterminados*/
+    padding: 0; /*elimina relleno predeterminado*/
+    box-sizing: border-box; /*hace que los tamaños incluyan bordes y padding*/
+    font-family: "poppins", sans-serif; /*fuente de letra moderna*/
+}
+
+/*fondo general*/
+body{
+    display: flex; /*coloca la barra lateral y el contenido en la misma fila*/
+    min-height: 100vh; /*asegura que ocupe toda la altura de la pantalla*/
+    background: linear-gradient(135deg, #0b1d3a, #13294b, #1b3a60 ); /*color de fondo*/
+    color: #fff; /*color de texto blanco*/
+}
+
+/*barra de navegacion*/
+.barra-lateral{
+    width: 240px; /*ancho fijo de la barra lateral*/
+    background-color: #1e293b; /*color de fondo oscuro*/
+    display: flex; /*organiza los elementos verticalmente*/
+    flex-direction: column; /*coloca los elementos en columna*/
+    padding: 20px; /*espacio interno*/
+    border-radius: 0 20px 20px 0; /*bordes redondeados en la esquina derecha*/
+}
+
+/*logo*/
+.barra-lateral .logo{
+    color: #ffffff; /*color blanco*/
+    font-size: 1.2em; /*tamaño de fuente*/
+    margin-bottom: 30px; /*espacio debajo del logo*/
+    text-align: center; /*centrar el texto*/
+}
+
+/*menu lateral*/
+.menu{
+    list-style: none; /*elimina los puntos de la lista*/
+}
+
+/*cada elemento del menu*/
+.menu li{
+    margin: 12px 0; /*espacio entre elementos*/
+}
+
+/*enlaces del menu*/
+.menu li a{
+    display: block; /*hace que el enlace ocupe todo el ancho*/
+    text-decoration: none; /*elimina el subrayado*/
+    color: #ffffff; /*color gris claro*/
+    padding: 10px 15px; /*espacio interno*/
+    border-radius: 10px; /*bordes redondeados*/
+    transition: 0.3s; /*transicion suave*/
+}
+
+/*efecto cuando pasa el mause sobre los enlaces*/
+.menu li a:hover{
+    background-color: #334155; /*fondo mas claro*/
+}
+
+/*cerrar sesion*/
+.logout{
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    background-color: #ef4444; /*fondo rojo*/
+    border: none; /*sin borde*/
+    color: #ffffff; /*texto blanco*/
+    padding: 12px 20px; /*altura del boton*/
+    border-radius: 8px; /*bordes redondeados*/
+    font-weight: bold; /*texto en negrita*/
+    cursor: pointer; /*cambia el cursor al pasar por encima*/
+    transition: 0.3s; /*transicion suave*/
+    margin-top: 20px; /*espacio*/
+}
+
+/*efecto al pasar el mause sobre el boton de cerrar sesion*/
+.logout:hover{
+    background-color: #dc2626; /*fondo rojo mas oscuro*/
+}
+
+/*contenido principal*/
+.contenido{
+    flex: 1; /*ocupado todo el espacio libre al lado de la barra*/
+    padding: 30px; /*espacio interno*/
+}
+
+/*titulo y saludo*/
+.encabezado{
+    display: flex; /*coloca el titulo y el usuario en la misma fila*/
+    justify-content: space-between; /*espacio entre el titulo y el usuario*/
+    align-items: center; /*centrar verticalmente*/
+    padding: 10px 25px; /*espacio interno*/
+    background: linear-gradient(to right, #1a2435, #0f172a); /*fondo degradado*/
+    margin-bottom: 50px; /*espacio debajo del encabezado*/
+    border-radius: 15px;
+    /* linea inferior con degradado */
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(to right, #a855f7, #3b82f6);
+    border-image-slice: 1;
+}
+
+/*titulo resumen ejecutivo*/
+.encabezado h1{
+    font-size: 1.8em; /*tamaño grande*/
+    font-weight: 700; /*texto en negrita*/
+}
+
+/*texto hola administrador*/
+.encabezado p{
+    font-size: 1em; /*tamaño normal*/
+    color: #cbd5e1; /*color gris claro*/
+}
+
+/* contenido del usuario*/
+.usuario{
+    display: flex; 
+    align-items: center;
+    gap: 10px; /*esapcio entre texto y avatar*/
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* avatar circular del administrador*/
+.avatar{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #c084fc;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    box-shadow: 0 0 8px rgb(160, 120, 255, 0.4);
+}
+
+/*CONTENEDOR INICIO*/
+/*tarjeta superior*/
+.tarjetas-superiores{
+    display: grid;/*usa cuadriculas*/
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); /*columnas adaptables*/
+    gap: 20px; /*espacio entre tarjetas*/
+    margin-bottom: 25px; /*espacio debajo de las tarjetas*/
+}
+
+/*estilo general de las tarjetas*/
+.tarjeta{
+    background-color: #ffffff; /*fondo blanco*/
+    color: #0f172a; /*texto oscuro*/
+    border-radius: 15px; /*bordes redondeados*/
+    padding: 20px; /*espacio interno*/
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /*sombra suave*/
+    transition: transform 0.3s; /*transicion suave l pasar el mause*/
+}
+
+/*efecto al pasar el mause sobre las tarjetas*/
+.tarjeta:hover{
+    transform: translateY(-5px); /*mueve levemente hacia arriba*/
+}
+
+/*titulo de las tarjetas*/
+.tarjeta h3{
+    font-size: 1em; /*tamaño mediano*/
+    color: #1e293b; /*color oscuro*/
+}
+
+/*numero principal*/
+.tarjeta h2{
+    font-size: 1.8em; /*tamaño grande*/
+    margin: 10px 0; /*espacio arriba y abajo*/
+}
+
+/*texto adicional*/
+.tarjeta p .tarjeta small{
+    font-size: 0.9em; /*tamaño pequeño*/
+    color: #475569; /*color gris medio*/
+}
+
+/*colores segun el tipo de tarjeta*/
+
+/*tarjeta ingresos*/
+.tarjeta.total{
+    border-left: 6px solid #10b981; /*borde verde*/
+}
+
+/*tarjeta clientes con deuda*/
+.tarjeta.deuda{
+    border-left: 6px solid #f97316; /*borde naranja*/
+}
+
+/*tarjeta productos*/
+.tarjeta.productos{
+    border-left: 6px solid #3b82f6; /*borde azul*/
+}
+
+/*tarjeta alertas*/
+.tarjeta.alertas{
+    border-left: 6px solid #ef4444; /*borde rojo*/
+}
+
+/*tarjetas inferiores*/
+.tarjetas-inferiores{
+    display: grid;/*usa cuadriculas*/
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /*dos columnas si hay espacio*/
+    gap: 20px; /*espacio entre tarjetas*/
+}
+
+/*tarjetas grandes inferiores*/
+.tarjeta.grande{
+    padding: 25px; /*mas espacio interno*/
+}
+
+/*tarjeta de stock*/
+.tarjeta.stock {
+    background-color: #fee2e2; /*fondo rojo claro*/
+    border-left: 6px solid #ef4444; /*borde rojo oscuro*/
+    color: #991b1b; /*texto rojo oscuro*/
+}
+
+/*lista productos en stock*/
+.tarjeta.stock ul{
+    list-style: none; /*elimina puntos de la lista*/
+    margin-top: 10px; /*espacio arriba*/
+}
+
+/*elementos de la lista*/
+.tarjeta.stock li{
+    margin-bottom: 8px; /*espacio entre elementos*/
+}
+
+/*texto rojo cantidades*/
+.rojo{
+    color: #dc2626; /*color rojo*/
+    font-weight: bold; /*texto en negrita*/
+}
+
+/*boton amarillo*/
+.amarillo{
+    display: inline-block;
+    text-decoration: none;
+    transition: 0.3s;
+    background-color: #facc15; /*fondo amarillo*/
+    color: #000; /*texto negro*/
+    border: none; /*sin bordes*/
+    padding: 10px 18px; /*altura y espacio*/
+    width: 100%; /*ocupa todo el ancho*/
+    border-radius: 8px; /*bordes redondeados*/
+    cursor: pointer; /*cursor tipo mano*/
+    font-weight: bold; /*texto fuerte*/
+    margin-top: 15px; /*separacion respecto a la lista*/
+}
+
+/*efecto al pasar el mause por el boton amarillo*/
+.amarillo:hover{
+    background-color: #eab308; /*color amarillo*/
+}
+
+/*tarjeta pagos proximos*/
+.tarjeta.pagos{
+    background-color: #e0e7ff; /*fondo azul*/
+    border-left: 6px solid #6366f1; /*borde azul*/
+    color: #1e3a8a; /*texto azul*/
+}
+
+/*clientes dentro de pagos*/
+.tarjeta.pagos ul{
+    list-style: none; /*quita viñetas*/
+    margin-top: 10px; /*espacio*/  
+}
+
+/*elementos lista de pagos*/
+.tarjeta.pagos li{
+    margin-bottom: 8px; /*espacio entre lineas*/
+}
+
+/*texto fecha*/
+.fecha {
+    font-weight: bold; /*negrita*/
+}
+
+/*boton azul */
+.azul {
+    display: inline-block;
+    text-decoration: none;
+    transition: 0.3s;
+    background-color: #6366f1; /*fondo azul*/
+    color: #ffffff; /*texto blanco*/
+    border: none; /*sin bordes*/
+    padding: 10px; /*altura del boton*/
+    width: 100%; /*ocupa todo el ancho*/
+    border-radius: 8px; /*bordes redondeados*/
+    cursor: pointer; /*cursor tipo mano*/
+    font-weight: bold; /*texto fuerte*/
+    margin-top: 15px; /*espacio superior*/
+}
+
+/*efecto al pasar el mause por el boton azul*/
+.azul:hover {
+    background-color: #4f46e5;
+    }
+
+/*CONTENEDOR DE CLIENTES */
+.contenedor-clientes {
+    background-color: white; /* fondo blanco */
+    border-radius: 12px; /* bordes redondeados */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08); /* sombra suave */
+    padding: 1.5rem; /* espacio interno */
+    color: #1e293b; /* color de texto oscuro */
+    
+}
+
+/* BUSCADOR */
+.buscador {
+    display: flex; /* coloca los elementos en fila */
+    justify-content: space-between; /* espacio entre los elementos */
+    align-items: center; /* alinea verticalmente */
+    margin-bottom: 0.8rem; /* espacio debajo del buscador */
+}
+
+.buscador input { 
+    width: 60%; /* ocupa el 60% del contenedor */
+    padding: 0.6rem 0.8rem; /* espacio interno */
+    border: 1px solid #d1d5db; /* borde gris claro */
+    border-radius: 8px; /* bordes redondeados */
+    font-size: 0.95rem; /* tamaño de fuente */
+    outline: none; /* elimina el contorno al enfocar */ 
+    transition: border-color 0.2s; /* transición suave */
+}
+
+.buscador input:focus {
+    border-color: #2563eb; /* cambia el color del borde al enfocar */
+}
+
+.btn-verde {
+    background-color: #16a34a; /* fonfo verde */
+    color: white; /* texto blanco */
+    border: none; /* sin borde */
+    padding: 0.7rem 1.2rem; /* espacio interno */
+    font-weight: 600; /* texto en negrita */
+    border-radius: 8px; /* bordes redondeados */
+    cursor: pointer; /* cambia el cursor al pasar por encima */
+    transition:  0.2s; /* transición suave */
+}
+
+.btn-verde:hover {
+    background-color: #15803d; /* fondo verde más oscuro */
+}
+
+.descripcion {
+    color: #6b7280; /* color gris */
+    font-size: 0.9rem; /* tamaño de fuente */
+    margin-bottom: 1rem; /* espacio debajo del texto */
+}
+
+/* ==== TABLA ==== */
+.tabla-clientes { 
+    width: 100%; /* ocupa todo el ancho del contenedor */
+    border-collapse: collapse;  /* elimina espacios entre celdas */
+    font-size: 0.95rem; /* tamaño de fuente */
+}
+
+.tabla-clientes thead {
+    background-color: #f9fafb; /* fondo gris claro */
+    text-align: left; /* alinea el texto a la izquierda */
+}
+
+.tabla-clientes th {
+    padding: 0.75rem; /* espacio interno */
+    color: #6b7280; /* color gris */
+    font-weight: 600; /* texto en negrita */
+    border-bottom: 1px solid #e5e7eb; /* linea inferior */
+}
+
+.tabla-clientes td {
+    padding: 0.75rem; /* espacio interno */
+    border-bottom: 1px solid #f1f5f9; /* linea inferior */
+}
+
+.tabla-clientes tr:hover {
+    background-color: #f9fafb; /* fondo gris claro al pasar el mouse */
+}
+
+/* ==== COLORES DE DEUDA ==== */
+.rojo {
+    color: #dc2626; /* texto de deuda pendiente color rojo color rojo */
+    font-weight: 600; /* texto en negrita */
+}
+
+.verde {
+    color: #16a34a; /* texto sin deuda color verde */
+    font-weight: 600; /* texto en negrita */
+}
+
+/* ==== ACCIONES ==== */
+.editar {
+    color: #3b82f6; /* texto editar color azul */
+    text-decoration: none; /* sin subrayado */
+    font-weight: 500; /* peso de fuente medio */
+    margin-right: 8px; /* espacio a la derecha */
+}
+
+.editar:hover {
+    text-decoration: underline; /* subrayado al pasar el mouse */
+}
+
+.btn-saldar {
+    background-color: #bbf7d0; /* fondo verde claro */
+    color: #065f46; /* texto verde oscuro */
+    border: none; /* sin borde */
+    border-radius: 8px; /* bordes redondeados */
+    padding: 0.4rem 0.7rem; /* espacio interno */
+    font-weight: 600; /* texto en negrita */
+    cursor: pointer; /* cambia el cursor al pasar por encima */
+}
+
+.btn-saldar:hover { 
+    background-color: #86efac; /* fondo verde más claro */
+}
+
+.saldada {
+    color: #9ca3af; /* texto gris */
+    font-weight: 600; /* texto en negrita */
+}
+
+/*CONTENEDOR PRODUCTOS*/
+.paneles {
+    display: grid; /*usa un diseño de cuadriculas*/
+    grid-template-columns: 2fr 1fr; /*define dos columnas la primera ocupa el doble de ancho que la segunda*/
+    gap: 30px; /*espacio entre las columnas*/
+}
+
+/*panel de producto*/
+.panel-productos{
+    background: white; /*fondo blanco*/
+    border-radius: 12px; /*bordes redondeados*/
+    padding: 25px; /*espacio interno alrededor del contendor*/
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1); /*sombra suave*/
+}
+
+.panel-productos h3{
+    color: #1e293b; /*color oscuro*/
+    margin-bottom: 5px; /*espacio debajo del titulo*/
+}
+
+.panel-productos p{
+    color: #64748b; /*color gris para el texto descriptivo*/
+    margin-bottom: 20px; /*espacio debajo del texto descriptivo*/
+}
+
+/*formulario*/
+.form-productos .fila{
+    display: flex; /*coloca los elementos inputs en fila*/
+    gap: 15px; /*espacio entre los inputs*/
+    margin-bottom: 15px; /*espacio debajo de cada fila*/
+}
+
+.form-productos input,
+.form-productos select,
+.registro-condicion textarea {
+    flex: 1; /*cada campo ocupa el mismo espacio en el contendedor*/
+    padding: 10px 12px; /*espacio interno*/
+    border: 1px solid #cbd5e1; /*borde gris claro*/
+    border-radius: 8px; /*bordes redondeados*/
+    font-size: 0.95em; /*tamaño de fuente*/
+    outline: none; /*elimina el contorno  azul predetermidado al enfocar el campo*/
+    transition: 0.2s; /*transicion suave*/
+}
+
+.form-productos input:focus,
+.form-productos select:focus,
+.registro-condicion textarea:focus {
+    border-color: #3b82f6; /*cambia el color del borde al enfocar*/
+    box-shadow: 0 0 4px rgba(59, 130, 246, 0.3); /*brillo sombra azul suave*/
+}
+
+.form-productos button{
+    width: 100%; /*ocupa todo el ancho del contenedor*/
+    background-color: #2563eb; /*fondo azul*/
+    color: white; /*texto blanco*/
+    font-weight: bold; /*texto en negrita*/
+    border: none; /*sin bordes*/
+    border-radius: 8px; /*bordes redondeados*/
+    padding: 12px; /*altura del boton*/
+    cursor: pointer; /*cursor tipo mano*/
+    transition: 0.3s; /*transicion suave*/
+}
+
+.form-productos button:hover{
+    background-color: #1d4ed8; /*fondo azul mas oscuro*/
+}
+
+/*registro de condiciones*/
+.registro-condicion {
+    margin-top: 25px; /*espacio arriba del formulario anterior*/
+    border-top: 1px solid #e2e8f0; /*linea superior*/
+    padding-top: 20px; /*espacio interno arriba entre lalinea y el contenido*/
+}
+.registro-condicion h4 {
+    color: #ea580c; /*color naranja para el titulo de la seccion*/
+    margin-bottom: 8px; /*espacio debajo del titulo*/
+}
+
+.registro-condicion p {
+    color: #64748b; /*color gris para el texto descriptivo*/
+    margin-bottom: 15px; /*espacio debajo del texto descriptivo*/
+}
+
+.registro-condicion textarea {
+    width: 100%; /*ocupa todo el ancho del contenedor*/
+    height: 90px; /*altura fija*/
+    resize: none; /*deshabilita el redimensionamiento manual del textear*/
+    margin-bottom: 15px; /*espacio debajo del textarea*/
+}
+
+.registro-condicion button {
+    width: 100%; /*ocupa todo el ancho del contenedor*/
+    background-color: #ea580c; /*fondo naranja*/
+    color: white; /*texto blanco*/
+    font-weight: bold; /*texto en negrita*/
+    border: none; /*sin bordes*/
+    border-radius: 8px; /*bordes redondeados*/
+    padding: 12px; /*altura del boton*/
+    cursor: pointer; /*cursor tipo mano*/
+    transition: 0.3s; /*transicion suave*/
+}
+
+.registro-condicion button:hover {
+    background-color: #c2410c; /*fondo naranja mas oscuro al pasar el mause*/
+}
+
+/*panel de categoria*/
+.panel-categorias{
+    background: white; /*fondo blanco*/
+    border-radius: 12px; /*bordes redondeados*/
+    padding: 25px; /*espacio interno alrededor del contendedor*/
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1); /*sombra suave*/
+}
+
+.panel-categorias h3{
+    color: #1e293b; /*color oscuro*/
+    margin-bottom: 5px; /*espacio debajo del titulo*/
+}
+
+.panel-categorias p{
+    color: #64748b; /*color gris para el texto descriptivo*/
+    margin-bottom: 15px; /*espacio debajo del texto descriptivo*/
+}
+
+.panel-categorias input{
+    width: 100%; /*ocupa todo ell ancho del contenedor*/
+    padding: 10px; /*espacio interno*/
+    border: 1px solid #cbd5e1; /*borde gris claro*/
+    border-radius: 8px; /*bordes redondeados*/
+    margin-bottom: 10px; /*espacio debajo del input*/
+}
+
+.panel-categorias button{
+    width: 100%; /*ocupa todo el ancho del contenedor*/
+    background-color: #9b35f2; /*fondo morado*/
+    color: white; /*texto blanco*/
+    font-weight: bold; /*texto en negrita*/
+    border: none; /*sin bordes*/
+    border-radius: 8px; /*bordes redondeados*/
+    padding: 10px; /*altura del boton*/
+    cursor: pointer; /*cursor tipo mano*/
+    transition: 0.3s; /*transicion suave*/
+}
+
+.panel-categorias button:hover{
+    background-color: #7a16d1;/*al pasar el mause se vuelve mas oscuro*/
+}
+
+.lista-categorias {
+    list-style: none; /*quita los puntos de la lista*/
+    padding: 0; /*sin border internos*/
+    margin-top: 15px; /*espacio encima de la lista*/
+}
+
+.lista-categorias li{
+    display: flex; /*alinea texto y enlace en la misma linea*/
+    justify-content: space-between; /*separa el texto y el enlace a los extremos */
+    align-items: center; /*centra verticalmente los elementos*/
+    background: #f1f5f9;/*fondo gris claro*/
+    padding: 8px 10px; /*espacio interno*/
+    border-radius: 8px; /*bordes redondes*/
+    margin-bottom: 8px; /*espacio entre los elementos de la lista*/
+    color: #1e293b; /*texto oscuro*/
+}
+
+.lista-categorias .eliminar {
+    color: #ef4444; /* Color rojo para el enlace de eliminar */
+    text-decoration: none; /* Quita el subrayado */
+    font-weight: bold; /* Texto en negrita */
+}
+
+.lista-categorias .eliminar:hover {
+    text-decoration: underline; /* Subraya el enlace al pasar el mouse */
+}
+
+/*CONTENEDOR CUENTAS*/
+/*panel cuentas por cobrar*/
+.panel-cobros {
+    background: white; /* fondo blanco del panel */
+    border-radius: 12px;  /* bordes redondeados suaves */
+    padding: 25px;  /* espaciado interior */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* sombra ligera para dar relieve */
+    margin-top: 20px; /* separacion superior a el encabezado */
+}
+
+/*Contenedor general del panel  */
+.panel-cobros h2{
+    font-size: 1.3rem;  /* define el tamaño de fuente del titulo principal */
+    margin-bottom: 8px; /*añade espacios inferiores para separar del texto siguiente */
+}
+
+.panel-cobros h2 span {
+    color: #475569; /* aplica color gris azulado al texto dentro del <span> */
+    font-size: 1rem; /* hace el texto del span un poco mas pequeño */
+    font-weight: normal; /* quita el negrito del texto dentro del span */
+}
+
+.descripcion {
+    color: #64748b;/* aplica color gris claro al texto descriptivo */
+    font-size: 0.95rem; /* ajusta el tamaño del texto un poco menor al estandar */
+    margin-bottom: 18px; /* agrega espacio inferior antes del siguiente bloque */
+}
+
+/* Tarjeta blanca */
+.tarjeta-cobros {
+    background-color: white;/* fondo blanco para la tarjeta */
+    border-radius: 12px; /* bordes redondeados para suavizar las esquinas */
+    padding: 25px;  /* espaciado interno uniforme en toda la tarjeta */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);  /* sombra sutil para darle relieve al panel */
+}
+
+/* Buscador y Boton */
+.acciones-busqueda {
+    display: flex; /* usa flexbox para alinear elementos en una fila */
+    justify-content: space-between;/* espacia el buscador y el boton a extremos opuestos */
+    align-items: center; /* centra verticalmente los elementos */
+    margin-bottom: 20px;  /* espacio inferior antes de la tabla */
+    gap: 10px;  /* espacio horizontal entre el input y el boton */
+}
+
+.acciones-busqueda input {
+    flex: 1; /* el input ocupa todo el espacio libre disponible */
+    padding: 10px 12px;  /* espaciado interno para texto */
+    border: 1px solid #cbd5e1;  /* Borde gris claro */
+    border-radius: 8px;/* bordes redondeados */
+    font-size: 0.95rem;   /* Tamaño de texto mas pequeña del normal */
+    outline: none;  /* elimina el borde azul predeterminado al hacer foco */
+    transition: 0.2s;/* Transicion suave para efectos al hacer foco */
+}
+
+.acciones-busqueda input:focus {
+    border-color: #3b82f6; /* cambia el color del borde al azul al hacer foco */
+    box-shadow: 0 0 4px rgba(59, 130, 246, 0.3); /* agrega un brillo azul suave */
+}
+
+.btn-informe {
+    background-color: #4f46e5;  /* color morado para el boton */
+    color: white;/* Texto blanco para contraste */
+    border: none; /* elimina el borde predeterminado */
+    border-radius: 8px; /* bordes redondeados */
+    padding: 10px 18px; /* espaciado interno para el boton */
+    font-weight: 600;/* texto seminegrita para mayor presencia */
+    cursor: pointer;/* cambia el cursor al de mano al pasar encima */
+    transition: 0.3s;/* Transicion suave */
+}
+
+.btn-informe:hover {
+    background-color: #4338ca;/* oscurece el fondo al pasar el cursor */
+}
+
+/*Tabla de cobros*/
+.tabla-cobros {
+    width: 100%; /* la tabla ocupa todo el ancho disponible */
+    border-collapse: collapse;/* elimina los espacios entre bordes de celdas */
+    font-size: 0.95rem; /* tamaño de texto mas pequeño */
+}
+
+.tabla-cobros thead {
+    background-color: #f1f5f9;/* fondo gris claro para diferenciar el encabezado */
+    text-align: left;/* alinea el texto de los encabezados a la izquierda */
+}
+
+.tabla-cobros th {
+    color: #475569;/* color gris oscuro para los encabezados */
+    padding: 10px 8px;  /*espaciado interno */
+    font-weight: 600; /* negrita para destacar los titulos */
+}
+
+.tabla-cobros td {
+    padding: 10px 8px;  /* espaciado interno de las celdas */
+    border-bottom: 1px solid #e2e8f0; /* linea que divide entre filas */
+    color: #1e293b;   /* Color del texto principal*/
+}
+
+/* Colores*/
+.tabla-cobros .deuda {
+    color: #ef4444; /*color*/
+    font-weight: bold; /*texto en negrita */
+}
+
+.tabla-cobros .hoy {
+    color: #ea580c;
+    font-weight: bold;
+}
+
+.tabla-cobros .fecha-verde {
+    color: #10b981;
+    font-weight: bold;
+}
+
+.tabla-cobros .pago {
+    color: #10b981;
+    text-decoration: none; /*elimina el subrayado predeterminado */
+    font-weight: 600; /*texto en seminegrita*/
+}
+
+.tabla-cobros .pago:hover {
+    text-decoration: underline;/*subraya el enlace al pasar el cursor */
+}
+
+/*CONTENEDOR REPORTES*/
+/* ======== PANEL DE REPORTES ======== */
+.panel-reportes {
+    padding: 10px;
+}
+
+.panel-reportes h2 {
+    font-size: 1.3rem;
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+.descripcion {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+/* ======== TARJETA PRINCIPAL ======== */
+.tarjeta-reportes {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* ======== ACCIONES SUPERIORES ======== */
+.acciones-reportes {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.acciones-reportes select {
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background-color: white;
+    outline: none;
+    cursor: pointer;
+}
+
+.acciones-reportes select:focus {
+    border-color: #0d9488;
+}
+
+/* Botón verde */
+.btn-generar {
+    background-color: #0d9488;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-generar:hover {
+    background-color: #0f766e;
+}
+
+/* ======== TARJETAS DE RESUMEN ======== */
+.resumen-reportes {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+/* Tarjeta verde */
+.tarjeta-ingreso-total {
+    flex: 1;
+    background-color: #ecfdf5;
+    padding: 18px 22px;
+    border-radius: 10px;
+}
+
+.tarjeta-ingreso-total .titulo {
+    color: #065f46;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+.tarjeta-ingreso-total h3 {
+    color: #047857;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+/* Tarjeta amarilla */
+.tarjeta-rentabilidad {
+    flex: 1;
+    background-color: #fefce8;
+    padding: 18px 22px;
+    border-radius: 10px;
+}
+
+.tarjeta-rentabilidad .titulo {
+    color: #92400e;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+.tarjeta-rentabilidad h3 {
+    color: #b45309;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+/* ======== GRÁFICO MOCK ======== */
+.grafico h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.contenedor-grafico {
+    background-color: #f8fafc;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    color: #64748b;
+    font-size: 0.95rem;
+    border: 1px solid #e2e8f0;
+}
+
+
+
+/*Pantallas pequeñas*/
+
+@media (max-width: 768px) {
+    body { 
+        flex-direction: column; /*coloca la barra lateral arriba y el contenido abajo*/
+    }
+
+    .barra-lateral{
+        width: 100%; /*barra lateral ocupa todo el ancho*/
+        border-radius: 0 ; /*sin bordes redondos*/
+        flex-direction: row; /*menu en la fila*/
+        justify-content: space-between; /*espacio entre elementos*/
+        align-items: center; /*centrar verticalmente*/
+    }
+
+    .menu{
+        display: flex; /*coloca los elementos en fila*/
+        gap: 10px; /*espacio entre elementos*/
+    }
+
+    .logout{
+        margin-top: 0; /*sin margen superior*/
+        padding: 8px 15px; /*reduce tamaño del boton*/
+    }
+}

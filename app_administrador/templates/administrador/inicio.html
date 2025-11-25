@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Anticipo Express</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+
+</head>
+<body>
+    <aside class="barra-lateral"> <!--barra de navegacion-->
+        <h2 class="logo">🧩 Anticipo Express</h2><!-- Logo del sistema -->
+    
+        <ul class="menu">
+            <li><a href="{% url 'admin_inicio' %}" class="activo">🏠 Inicio</a></li>
+            <li><a href="{% url 'admin_clientes' %}">👥 Gestión de Clientes</a></li>
+            <li><a href="{% url 'admin_productos' %}">📦 Inventario y Productos</a></li>
+            <li><a href="{% url 'admin_cuentas' %}">💰 Cuentas por Cobrar</a></li>
+            <li><a href="{% url 'admin_reportes' %}">📊 Reportes de Ingreso</a></li>
+        </ul>
+
+    <!-- Botón para cerrar sesión -->
+        <a href="{% url 'inicio_login' %}" class="logout">Cerrar Sesión</a>
+    </aside>
+
+<main class="contenido"> <!--contenedor principal -->
+
+        <header class="encabezado"> <!--encabezado principal-->
+            <h1>Resumen Ejecutivo</h1> <!-- Título de la página -->
+                <div class="usuario">  
+                    <p>¡Hola, Administrador!</p> <!-- Saludo al usuario -->
+                <div class="avatar">A</div> <!-- Avatar del usuario -->
+            </div>
+        </header>
+
+        
+        <section class="tarjetas-superiores"> <!--seccion de tarjetas superiores-->
+
+            <div class="tarjeta total"> <!--tarjeta con total-->
+                <h1>$</h1>
+                <h2>1.680.500</h2> <!-- Monto total -->
+                <p>COP</p> <!-- Tipo de moneda -->
+                <small>+8.5% desde el mes pasado</small> <!-- Porcentaje de aumento -->
+            </div>
+
+            <div class="tarjeta deuda"> <!--tarjeta con clientes con deuda-->
+                <h3>Clientes con Deuda</h3> 
+                <h2>4</h2>
+                <p>COP</p>
+                <p>4 Clientes con deuda</p> 
+            </div>
+
+            <div class="tarjeta productos"> <!-- Tarjeta que muestra productos existentes -->
+                <h3>Productos Registrados</h3>  
+                <h2>4</h2>
+                <p>3 Categorías activas</p> 
+            </div>
+
+            <div class="tarjeta alertas"> <!--tarjeta con alertas activas-->
+                <h3>Alertas Activas</h3>
+                <h2>4</h2>
+                <p>¡Prioridad de atención!</p>
+            </div>
+        </section>
+
+        <section class="tarjetas-inferiores"> <!--seccion de tarjetas inferiores-->
+            <div class="tarjeta grande stock"> <!--tarjeta con stock bajo-->
+                <h3>Alertas de Stock Bajo (2)</h3>  
+                <ul>
+                    <li>Licuadora Industrial — <span class="rojo">1 unid.</span></li> 
+                    <li>Secador de Cabello — <span class="rojo">0 unid.</span></li>
+                </ul>
+            <a href="/ADMINISTRADOR/productos.html" class="amarillo">Gestionar Inventario</a><!-- Botón que permitiría ir al inventario -->
+        </div>
+
+        <div class="tarjeta grande pagos"> <!--tarjeta con pagos fiados-->
+            <h3>Pagos Fiados Próximos (3)</h3>
+                <ul> 
+                    <li>Ana María Pérez — <span class="fecha">Vence: 2025-10-25</span></li> 
+                    <li>Roberto Gómez — <span class="fecha">Vence: 2025-10-23</span></li> 
+                </ul>
+                <a href="/ADMINISTRADOR/cuentas.html" class="azul">Ir a Cuentas por Cobrar</a><!-- Botón que permitiría ir a la cuentas por cobrar -->
+            </div>
+        </section>
+    </main>
+</body>
+</html>

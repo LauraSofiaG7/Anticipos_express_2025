@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte Ingresos - Anticipo Express</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+
+</head>
+<body>
+    <aside class="barra-lateral"> <!--barra de navegacion-->
+        <h2 class="logo">🧩 Anticipo Express</h2><!-- Logo del sistema -->
+    
+        <ul class="menu">
+            <li><a href="{% url 'admin_inicio' %}">🏠 Inicio</a></li>
+            <li><a href="{% url 'admin_clientes' %}">👥 Gestión de Clientes</a></li>
+            <li><a href="{% url 'admin_productos' %}">📦 Inventario y Productos</a></li>
+            <li><a href="{% url 'admin_cuentas' %}">💰 Cuentas por Cobrar</a></li>
+            <li><a href="{% url 'admin_reportes' %}" class="activo">📊 Reportes de Ingreso</a></li>
+        </ul>
+
+    <!-- Boton para cerrar sesion -->
+        <a href="{% url 'inicio_login' %}" class="logout">Cerrar Sesión</a>
+    </aside>
+
+<main class="contenido"> <!--contenedor principal -->
+
+        <header class="encabezado"> <!--encabezado principal-->
+            <h1>Reportes de Ingresos</h1> <!-- Título de la página -->
+                <div class="usuario">  
+                    <p>¡Hola, Administrador!</p> <!-- Saludo al usuario -->
+                <div class="avatar">A</div> <!-- Avatar del usuario -->
+            </div>
+        </header>
+        <section class="panel-reportes">
+            <!--Contenedor principal-->
+            <div class="tarjeta-reportes">
+                <p class="descripcion">Evalúa la rentabilidad mensual y el desempeño financiero.</p>
+                
+                <div class="acciones-reportes">
+                    <select>
+                        <option>Seleccionar Mes</option>
+                        <option>Enero</option>
+                        <option>Febrero</option>
+                        <option>Marzo</option>
+                        <option>Abril</option>
+                        <option>Mayo</option>
+                        <option>Junio</option>
+                        <option>Julio</option>
+                        <option>Agosto</option>
+                        <option>Septiembre</option>
+                        <option>Octubre</option>
+                        <option>Noviembre</option>
+                        <option>Diciembre</option>
+                    </select>
+                    <button class="btn-generar">Generar Reporte</button> <!-- Boton verde -->
+                </div>
+
+                <!-- tarjetas de resultados-->
+                <div class="resumen-reportes">
+                    <!-- Tarjeta verde (Ingresos Totales) -->
+                    <div class="tarjeta-ingreso-total">
+                        <p class="titulo">Ingresos Totales (Octubre)</p>
+                        <h3>$ 15,500,000 COP</h3>
+                    </div>
+
+                    <!-- Tarjeta amarilla (Rentabilidad) -->
+                    <div class="tarjeta-rentabilidad">
+                        <p class="titulo">Rentabilidad Neta Estimada</p>
+                        <h3>$ 3,100,000 COP</h3>
+                    </div>
+                </div>
+                <div class="grafico">
+                    <h3>Gráfico de Tendencia (Mock)</h3>
+                    <div class="contenedor-grafico">
+                        <p>[Aquí iría un gráfico de barras/líneas de ingresos vs. egresos]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

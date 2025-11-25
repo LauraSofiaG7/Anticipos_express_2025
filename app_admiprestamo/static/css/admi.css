@@ -1,0 +1,284 @@
+/*margenes y paddings para todos los elementos*/
+*{
+    margin: 0; /*elimina margenes predeterminados*/
+    padding: 0; /*elimina relleno predeterminado*/
+    box-sizing: border-box; /*hace que los tamaños incluyan bordes y padding*/
+    font-family: "poppins", sans-serif; /*fuente de letra moderna*/
+}
+
+/*fondo general*/
+body{
+    display: flex; /*coloca la barra lateral y el contenido en la misma fila*/
+    min-height: 100vh; /*asegura que ocupe toda la altura de la pantalla*/
+    background: linear-gradient(135deg, #0b1d3a, #13294b, #1b3a60 ); /*color de fondo*/
+    color: #fff; /*color de texto blanco*/
+}
+
+/*barra de navegacion*/
+.barra-lateral{
+    width: 240px; /*ancho fijo de la barra lateral*/
+    background-color: #1e293b; /*color de fondo oscuro*/
+    display: flex; /*organiza los elementos verticalmente*/
+    flex-direction: column; /*coloca los elementos en columna*/
+    padding: 20px; /*espacio interno*/
+    border-radius: 0 20px 20px 0; /*bordes redondeados en la esquina derecha*/
+}
+
+/*logo*/
+.barra-lateral .logo{
+    color: #ffffff; /*color blanco*/
+    font-size: 1.2em; /*tamaño de fuente*/
+    margin-bottom: 30px; /*espacio debajo del logo*/
+    text-align: center; /*centrar el texto*/
+}
+
+/*menu lateral*/
+.menu{
+    list-style: none; /*elimina los puntos de la lista*/
+}
+
+/*cada elemento del menu*/
+.menu li{
+    margin: 12px 0; /*espacio entre elementos*/
+}
+
+/*enlaces del menu*/
+.menu li a{
+    display: block; /*hace que el enlace ocupe todo el ancho*/
+    text-decoration: none; /*elimina el subrayado*/
+    color: #f6f6f6; /*color gris claro*/
+    padding: 10px 15px; /*espacio interno*/
+    border-radius: 10px; /*bordes redondeados*/
+    transition: 0.3s; /*transicion suave*/
+}
+
+/*efecto cuando pasa el mause sobre los enlaces*/
+.menu li a:hover{
+    background-color: #334155; /*fondo mas claro*/
+}
+
+/*cerrar sesion*/
+.logout{
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    background-color: #ef4444; /*fondo rojo*/
+    border: none; /*sin borde*/
+    color: #ffffff; /*texto blanco*/
+    padding: 12px 20px; /*altura del boton*/
+    border-radius: 8px; /*bordes redondeados*/
+    font-weight: bold; /*texto en negrita*/
+    cursor: pointer; /*cambia el cursor al pasar por encima*/
+    transition: 0.3s; /*transicion suave*/
+    margin-top: 20px; /*espacio*/
+}
+
+/*efecto al pasar el mause sobre el boton de cerrar sesion*/
+.logout:hover{
+    background-color: #dc2626; /*fondo rojo mas oscuro*/
+}
+
+/*contenido principal*/
+.contenido{
+    flex: 1; /*ocupado todo el espacio libre al lado de la barra*/
+    padding: 30px; /*espacio interno*/
+}
+
+/*titulo y saludo*/
+.encabezado{
+    display: flex; /*coloca el titulo y el usuario en la misma fila*/
+    justify-content: space-between; /*espacio entre el titulo y el usuario*/
+    align-items: center; /*centrar verticalmente*/
+    padding: 10px 25px; /*espacio interno*/
+    background: linear-gradient(to right, #1a2435, #0f172a); /*fondo degradado*/
+    margin-bottom: 50px; /*espacio debajo del encabezado*/
+    border-radius: 15px;
+
+    /* linea inferior con degradado */
+
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(to right, #a855f7, #3b82f6);
+    border-image-slice: 1;
+}
+
+/*titulo resumen ejecutivo*/
+.encabezado h1{
+    font-size: 1.8em; /*tamaño grande*/
+    font-weight: 700; /*texto en negrita*/
+}
+
+/*texto hola administrador*/
+.encabezado p{
+    font-size: 1em; /*tamaño normal*/
+    color: #cbd5e1; /*color gris claro*/
+}
+
+/* contenido del usuario*/
+.usuario{
+    display: flex; 
+    align-items: center;
+    gap: 10px; /*esapcio entre texto y avatar*/
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* avatar circular del administrador*/
+.avatar{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #c084fc;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    box-shadow: 0 0 8px rgb(160, 120, 255, 0.4);
+}
+
+/* ==== Tarjetas (cards superiores) ==== */
+.cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+    flex: 1 1 260px;
+    position: relative;
+    min-width: 220px;
+}
+
+.card .label {
+    font-size: 0.9rem;
+    color: #4a5568;
+    margin-bottom: 14px;
+}
+
+.card .value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* Línea inferior decorativa */
+.card::after {
+    content: "";
+    height: 6px;
+    width: calc(100% - 36px);
+    border-radius: 8px;
+    position: absolute;
+    left: 18px;
+    bottom: 10px;
+}
+
+.card.acento-azul::after {
+    background: linear-gradient(90deg, #5b46ff, #745fff);
+}
+
+.card.acento-amarillo::after {
+    background: linear-gradient(90deg, #e6b11d, #d59b1a);
+}
+
+.card.acento-verde::after {
+    background: linear-gradient(90deg, #18b46a, #16a34a);
+}
+
+/* ==== Listado de préstamos ==== */
+.listado-prestamos {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+    padding: 22px;
+}
+
+.encabezado-listado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+h2 {
+    font-size: 1.35rem;
+    color: #1f2937;
+}
+
+.top-controls select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #e6eaf0;
+    background: white;
+    font-size: 0.95rem;
+}
+
+/* ==== Tabla ==== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f8f9fb;
+}
+
+th {
+    text-align: left;
+    padding: 14px 16px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #6b7280;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 16px;
+    border-bottom: 1px solid #edf2f7;
+    font-size: 0.95rem;
+    color: #2d3748;
+}
+
+tbody tr:hover {
+    background: #fafbfd;
+}
+
+/* ==== Estados ==== */
+.estado {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.78rem;
+}
+
+.estado.activo {
+    background: #ebf4ff;
+    color: #2b6cb0;
+}
+
+.estado.pronto {
+    background: #fff7ed;
+    color: #b7791f;
+}
+
+.estado.saldado {
+    background: #f0fff4;
+    color: #2f855a;
+}
+
+/* ==== Enlace de acción ==== */
+a.accion {
+    color: #5b46ff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+a.accion:hover {
+    text-decoration: underline;
+}

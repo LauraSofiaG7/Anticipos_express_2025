@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revision de Deudad - Anticipo Express</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/vendedor.css' %}">
+</head>
+<body>
+    <aside class="barra-lateral"> <!--barra de navegacion-->
+        <h2 class="logo">🧩 Anticipo Express</h2><!-- Logo del sistema -->
+        <ul class="menu">
+            <li><a href="{% url 'vendedor_nueva_venta' %}"> Nueva Venta </a></li>
+
+            <li><a href="{% url 'vendedor_consulta_productos' %}">
+                Consulta de Productos
+            </a></li>
+
+            <li><a href="{% url 'vendedor_revision_deudas' %}" class="activo"> Revisión de Deudas </a></li> 
+        </ul>
+
+
+    <!-- Botón para cerrar sesión -->
+        <a href="{% url 'inicio_login' %}" class="logout">Cerrar Sesión</a>
+    </aside>
+
+    <main class="contenido"> <!--contenedor principal -->
+        <header class="encabezado"> <!--encabezado principal-->
+            <h1>Registro de Nueva Venta</h1> <!-- Título de la página -->
+                <div class="usuario">  
+                    <p>¡Hola, Vendedor!</p> <!-- Saludo al usuario -->
+                <div class="avatar">VE</div> <!-- Avatar del usuario -->
+            </div>
+        </header>
+        <div class="main-container">
+            <div class="top-bar">
+                <p>Verifique los pagos pendientes del cliente antes de ofrecer una nueva venta a crédito.</p>
+                    <input type="text" placeholder="Buscar Cliente por nombre/ID...">
+                        <button>Cargar Deudas</button>
+            </div>
+
+            <div class="deudas-container">
+                <h3>Deudas de: <strong>Juan Pérez</strong> (ID: 101)</h3>
+
+            <div class="deuda-total">
+                <span>TOTAL ADEUDADO:</span>
+            <div class="monto">$ 800,000 COP</div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>PRODUCTO FIADO</th>
+                    <th>MONTO INICIAL</th>
+                    <th>FECHA VENCIMIENTO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mini Split A/C</td>
+                    <td>$ 800,000 COP</td>
+                    <td><span class="vencido">20/09/2025 (Vencido)</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+    <div class="recomendacion">
+        💡 <strong>RECOMENDACIÓN:</strong> Se debe saldar la deuda anterior antes de aprobar una nueva venta fiada.
+    </div>
+</body>
+</html>

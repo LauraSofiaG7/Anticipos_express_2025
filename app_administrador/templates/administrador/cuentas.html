@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuentas - Anticipo Express</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+
+</head>
+<body>
+    <aside class="barra-lateral"> <!--barra de navegacion-->
+        <h2 class="logo">🧩 Anticipo Express</h2><!-- Logo del sistema -->
+    
+        <ul class="menu">
+            <li><a href="{% url 'admin_inicio' %}">🏠 Inicio</a></li>
+            <li><a href="{% url 'admin_clientes' %}">👥 Gestión de Clientes</a></li>
+            <li><a href="{% url 'admin_productos' %}">📦 Inventario y Productos</a></li>
+            <li><a href="{% url 'admin_cuentas' %}" class="activo">💰 Cuentas por Cobrar</a></li>
+            <li><a href="{% url 'admin_reportes' %}">📊 Reportes de Ingreso</a></li>
+        </ul>
+
+    <!-- Botón para cerrar sesión -->
+        <a href="{% url 'inicio_login' %}" class="logout">Cerrar Sesión</a>
+    </aside>
+
+<main class="contenido"> <!--contenedor principal -->
+
+        <header class="encabezado"> <!--encabezado principal-->
+            <h1>Cuentas por Cobrar (Ventas Fiadas)</h1> <!-- Titulo de la pagina -->
+                <div class="usuario">  
+                    <p>¡Hola, Administrador!</p> <!-- Saludo al usuario -->
+                <div class="avatar">A</div> <!-- Avatar del usuario -->
+            </div>
+        </header>
+
+        <!-- Panel principal -->
+        <section class="panel-cobros">
+            <div class="descripcion">   <!-- Descripción debajo del título que explica el propósito de la sección -->
+                Control de cuentas por cobrar: Listado de clientes, monto adeudado y fecha del préstamo.
+            </div>
+            <div class="tarjeta-cobros"> <!-- Contenedor principal (tarjeta blanca) donde se incluye el buscador y la tabla -->
+
+                <div class="acciones-busqueda"> <!-- deccion de busqueda e informe -->
+                    <input type="text" placeholder="Buscar cliente o monto..."> <!-- Campo de texto para buscar clientes o montos -->
+                    <button class="btn-informe">Consultar Informe</button> <!-- Botón para generar o consultar un informe -->
+                </div>
+
+                <table class="tabla-cobros">  <!-- tabla que muestra la informacion de las cuentas por cobrar -->
+                    <thead>
+                        <tr> 
+                            <th>CLIENTE</th>
+                            <th>MONTO ADEUDADO</th>
+                            <th>FECHA PRÉSTAMO</th>
+                            <th>PRÓX. PAGO</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr> <!-- primera fila: datos del primer cliente -->
+                            <td>Juan Pérez</td>
+                            <td class="deuda">$ 800,000 COP</td>
+                            <td>20/09/2025</td>
+                            <td class="hoy">HOY</td>
+                            <td><a href="#" class="pago">Marcar Pago</a></td>
+                        </tr>
+                        <tr> <!-- segunda fila: datos del primer cliente -->
+                            <td>María López</td>
+                            <td class="deuda">$ 1,200,000 COP</td>
+                            <td>01/10/2025</td>
+                            <td class="fecha-verde">25/11/2025</td>
+                            <td><a href="#" class="pago">Marcar Pago</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
