@@ -16,39 +16,42 @@ def login_view(request):
         contraseña = request.POST.get("password")
         rol = request.POST.get("rol")
 
-        # 1. Buscar SOLO por correo
+        # Buscar usuario por correo
         usuario = Usuario.objects.filter(correo=correo).first()
 
         if usuario is None:
             messages.error(request, "El correo no existe.")
             return render(request, "login/contraseña.html")
 
-        # 2. Validar rol ANTES de validar contraseña
-        if usuario.rol != rol:
-            messages.error(request, "El rol seleccionado no coincide con tu cuenta.")
+        # VALIDACIÓN DE CONTRASEÑAS POR ROL
+        contraseñas_roles = {
+            "Administrador": "admi2025",
+            "Vendedor": "vendedor2025",
+            "Cajero": "cajero2025",
+            "Prestamos": "prestamos2025",
+        }
+
+        # Si el rol no existe en la tabla de contraseñas
+        if rol not in contraseñas_roles:
+            messages.error(request, "Rol inválido.")
             return render(request, "login/contraseña.html")
 
-        # 3. Validar contraseña SOLO si el rol coincide
-        if usuario.contraseña != contraseña:
-            messages.error(request, "Contraseña incorrecta.")
+        # Comparar contraseña según el rol elegido
+        if contraseña != contraseñas_roles[rol]:
+            messages.error(request, "Contraseña incorrecta para el rol seleccionado.")
             return render(request, "login/contraseña.html")
 
+        # REDIRECCIÓN SEGÚN ROL
+        if rol == "Administrador":
+            return redirect("admin_inicio")
 
-        # Redirigir según el rol
-        if usuario.rol == "Administrador":
-            return redirect("admin_inicio")   
-
-        elif usuario.rol == "Vendedor":
+        elif rol == "Vendedor":
             return redirect("vendedor_nueva_venta")
 
-        elif usuario.rol == "Cajero":
-            return redirect("cajero_registro") 
+        elif rol == "Cajero":
+            return redirect("cajero_registro")
 
-        elif usuario.rol == "Prestamos":
-            return redirect("prestamos_gestion")  
-
-        else:
-            messages.error(request, "Rol desconocido.")
-            return render(request, "login/contraseña.html")
+        elif rol == "Prestamos":
+            return redirect("admi_prestamos_gestion")
 
     return render(request, "login/contraseña.html")
