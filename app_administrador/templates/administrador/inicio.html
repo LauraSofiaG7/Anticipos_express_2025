@@ -10,14 +10,14 @@
 </head>
 <body>
     <aside class="barra-lateral"> <!--barra de navegacion-->
-        <h2 class="logo">🧩 Anticipo Express</h2><!-- Logo del sistema -->
+        <h2 class="logo">Anticipo Express</h2><!-- Logo del sistema -->
     
         <ul class="menu">
-            <li><a href="{% url 'admin_inicio' %}" class="activo">🏠 Inicio</a></li>
-            <li><a href="{% url 'admin_clientes' %}">👥 Gestión de Clientes</a></li>
-            <li><a href="{% url 'admin_productos' %}">📦 Inventario y Productos</a></li>
-            <li><a href="{% url 'admin_cuentas' %}">💰 Cuentas por Cobrar</a></li>
-            <li><a href="{% url 'admin_reportes' %}">📊 Reportes de Ingreso</a></li>
+            <li><a href="{% url 'admin_inicio' %}" class="activo">Inicio</a></li>
+            <li><a href="{% url 'admin_clientes' %}">Gestión de Clientes</a></li>
+            <li><a href="{% url 'admin_productos' %}">Inventario y Productos</a></li>
+            <li><a href="{% url 'admin_cuentas' %}">Cuentas por Cobrar</a></li>
+            <li><a href="{% url 'admin_reportes' %}">Reportes de Ingreso</a></li>
         </ul>
 
     <!-- Botón para cerrar sesión -->
@@ -39,48 +39,60 @@
 
             <div class="tarjeta total"> <!--tarjeta con total-->
                 <h1>$</h1>
-                <h2>1.680.500</h2> <!-- Monto total -->
+                <h2>${{ ingresos_mes }}</h2> <!-- Monto total -->
                 <p>COP</p> <!-- Tipo de moneda -->
-                <small>+8.5% desde el mes pasado</small> <!-- Porcentaje de aumento -->
+                <small>{{ crecimiento }}% desde el mes pasado</small> <!-- Porcentaje de aumento -->
             </div>
 
             <div class="tarjeta deuda"> <!--tarjeta con clientes con deuda-->
                 <h3>Clientes con Deuda</h3> 
-                <h2>4</h2>
-                <p>COP</p>
-                <p>4 Clientes con deuda</p> 
+                <h2>{{ clientes_deuda }}</h2>
+                <p>{{ clientes_con_deuda }}</p>
+                 
             </div>
 
             <div class="tarjeta productos"> <!-- Tarjeta que muestra productos existentes -->
                 <h3>Productos Registrados</h3>  
-                <h2>4</h2>
-                <p>3 Categorías activas</p> 
+                <h2>{{ total_productos }}</h2>
+                <p>{{ categorias_activas }} Categorías activas</p>
+
             </div>
 
             <div class="tarjeta alertas"> <!--tarjeta con alertas activas-->
                 <h3>Alertas Activas</h3>
-                <h2>4</h2>
+                <h2>{{ alertas_stock }}</h2>
                 <p>¡Prioridad de atención!</p>
             </div>
         </section>
 
         <section class="tarjetas-inferiores"> <!--seccion de tarjetas inferiores-->
             <div class="tarjeta grande stock"> <!--tarjeta con stock bajo-->
-                <h3>Alertas de Stock Bajo (2)</h3>  
+                <h3>Alertas de Stock Bajo ({{ alertas_stock }})</h3> 
                 <ul>
-                    <li>Licuadora Industrial — <span class="rojo">1 unid.</span></li> 
-                    <li>Secador de Cabello — <span class="rojo">0 unid.</span></li>
+                    {% for p in productos_stock_bajo %}
+                        <li>{{ p.nombre }} — <span class="rojo">{{ p.stock }} unid.</span></li>
+                    {% empty %}
+                        <li>No hay productos con stock bajo</li>
+                    {% endfor %}
                 </ul>
-            <a href="/ADMINISTRADOR/productos.html" class="amarillo">Gestionar Inventario</a><!-- Botón que permitiría ir al inventario -->
+
+            <a href="{%url 'admin_productos' %}" class="amarillo">Gestionar Inventario</a><!-- Botón que permitiría ir al inventario -->
         </div>
 
         <div class="tarjeta grande pagos"> <!--tarjeta con pagos fiados-->
-            <h3>Pagos Fiados Próximos (3)</h3>
-                <ul> 
-                    <li>Ana María Pérez — <span class="fecha">Vence: 2025-10-25</span></li> 
-                    <li>Roberto Gómez — <span class="fecha">Vence: 2025-10-23</span></li> 
+            <h3>Pagos Fiados Próximos ({{ pagos_fiados|length }})</h3>
+
+                <ul>
+                    {% for c in pagos_fiados %}
+                        <li>{{ c.cliente.nombre }} — 
+                            <span class="fecha">Vence: {{ c.fecha_vencimiento }}</span>
+                        </li>
+                    {% empty %}
+                        <li>No hay pagos próximos</li>
+                    {% endfor %}
                 </ul>
-                <a href="/ADMINISTRADOR/cuentas.html" class="azul">Ir a Cuentas por Cobrar</a><!-- Botón que permitiría ir a la cuentas por cobrar -->
+
+                <a href="{% url 'admin_cuentas' %}" class="azul">Ir a Cuentas por Cobrar</a><!-- Botón que permitiría ir a la cuentas por cobrar -->
             </div>
         </section>
     </main>

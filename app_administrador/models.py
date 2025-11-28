@@ -28,7 +28,7 @@ class Usuario(models.Model):
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100)
     telefono = models.CharField(max_length=20)
-    correo = models.EmailField(unique=True)
+    correo = models.EmailField(blank=True, null=True, unique=False)
     direccion = models.CharField(max_length=100)
     documento_identidad = models.CharField(max_length=20, unique=True)
     firma = models.CharField(max_length=50)

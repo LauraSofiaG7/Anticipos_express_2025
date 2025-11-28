@@ -12,16 +12,16 @@
 <!-- Barra lateral de navegación -->
     <aside class="barra-lateral">
         <h2 class="logo"> <!--contenedor principal de la barra lateral-->
-            <span class="icono">🧩</span> <!-- icono-->
+            <span class="icono"></span> <!-- icono-->
             <span class="texto">Anticipo Express</span> <!--texto del nombre del sistema-->
         </h2>
 
         <ul class="menu">
-            <li><a href="{% url 'admin_inicio' %}">🏠 Inicio</a></li>
-            <li><a href="{% url 'admin_clientes' %}">👥 Gestión de Clientes</a></li>
-            <li><a href="{% url 'admin_productos' %}" class="activo">📦 Inventario y Productos</a></li>
-            <li><a href="{% url 'admin_cuentas' %}">💰 Cuentas por Cobrar</a></li>
-            <li><a href="{% url 'admin_reportes' %}">📊 Reportes de Ingreso</a></li>
+            <li><a href="{% url 'admin_inicio' %}"> Inicio</a></li>
+            <li><a href="{% url 'admin_clientes' %}"> Gestión de Clientes</a></li>
+            <li><a href="{% url 'admin_productos' %}" class="activo"> Inventario y Productos</a></li>
+            <li><a href="{% url 'admin_cuentas' %}"> Cuentas por Cobrar</a></li>
+            <li><a href="{% url 'admin_reportes' %}"> Reportes de Ingreso</a></li>
         </ul>
 
         <a href="{% url 'inicio_login' %}" class="logout">Cerrar Sesión</a>
@@ -78,17 +78,57 @@
             <div class="panel-categorias">
                 <h3>Gestión de Categorías</h3>
                 <p>Mantén el catálogo organizado.</p>
-
+                
                 <input type="text" placeholder="Nombre de Categoría">
-                <button>Agregar Categoría</button>
-
-                <ul class="lista-categorias">
-                    <li>Neveras <a href="#" class="eliminar">Eliminar</a></li>
-                    <li>Televisores <a href="#" class="eliminar">Eliminar</a></li>
-                    <li>Lavadoras <a href="#" class="eliminar">Eliminar</a></li>
+                <button class="btn-morado" onclick="abrirModalCliente()">Agregar Nueva Categoria</button>
+                <ul class="Lista de las Categorías">
+                    <li>Neveras <button onclick="eliminarCategoria(this)">Eliminar</li>
                 </ul>
+                
             </div>
         </section>
     </main>
+    <!-- Botón para abrir el modal -->
+
+
+<!-- Modal -->
+<div id="modalCliente" class="modal-oscuro">
+  <div class="modal-contenido">
+
+    <h2>Agregar Informacion del Producto</h2>
+    <p>Ingresa la información completa del producto.</p>
+
+
+    <form id="formAgregarCliente">
+
+      <input type="text" name="Nombre Categoria" placeholder="Nombre de Categoria" required>
+
+
+      <button type="submit" class="btn-morado">Guardar Cliente</button>
+      <button type="button" class="btn-cerrar" onclick="cerrarModalCliente()">Cancelar</button>
+
+    </form>
+
+  </div>
+</div>
+<script>
+  function abrirModalCliente() {
+    document.getElementById("modalCliente").style.display = "flex";
+  }
+
+  function cerrarModalCliente() {
+    document.getElementById("modalCliente").style.display = "none";
+  }
+
+  // Aquí procesás el formulario
+  document.getElementById("formAgregarCliente").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    alert("Cliente guardado (aquí luego conectamos con Django 😉)");
+
+    cerrarModalCliente();
+  });
+</script>
+
 </body>
 </html>

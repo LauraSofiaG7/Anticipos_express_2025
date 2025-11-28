@@ -6,79 +6,224 @@
     <title>Gestion de Clientes - Anticipo Express</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
-
 </head>
 <body>
-    <!-- Barra lateral de navegación -->
-    <aside class="barra-lateral">
-        <h2 class="logo"> <!--contenedor principal de la barra lateral-->
-            <span class="icono">🧩</span> <!-- icono-->
-            <span class="texto">Anticipo Express</span> <!--texto del nombre del sistema-->
-        </h2>
 
-        <ul class="menu">
-            <li><a href="{% url 'admin_inicio' %}">🏠 Inicio</a></li>
-            <li><a href="{% url 'admin_clientes' %}" class="activo">👥 Gestión de Clientes</a></li>
-            <li><a href="{% url 'admin_productos' %}">📦 Inventario y Productos</a></li>
-            <li><a href="{% url 'admin_cuentas' %}">💰 Cuentas por Cobrar</a></li>
-            <li><a href="{% url 'admin_reportes' %}">📊 Reportes de Ingreso</a></li>
-        </ul>
+<!-- Barra lateral -->
+<aside class="barra-lateral">
+    <h2 class="logo">
+        <span class="icono"></span>
+        <span class="texto">Anticipo Express</span>
+    </h2>
 
-        <a href="{% url 'inicio_login' %}" class="logout">Cerrar Sesión</a>
-    </aside>
+    <ul class="menu">
+        <li><a href="{% url 'admin_inicio' %}">Inicio</a></li>
+        <li><a href="{% url 'admin_clientes' %}" class="activo">Gestión de Clientes</a></li>
+        <li><a href="{% url 'admin_productos' %}">Inventario y Productos</a></li>
+        <li><a href="{% url 'admin_cuentas' %}">Cuentas por Cobrar</a></li>
+        <li><a href="{% url 'admin_reportes' %}">Reportes de Ingreso</a></li>
+    </ul>
 
-    <main class="contenido"> <!-- seccion principal de la pagina-->
-        <header class="encabezado">
-            <h1>Gestion de Clientes</h1> <!--titulo de la pagina-->
-                <div class="usuario">  
-                    <p>¡Hola, Administrador!</p> <!-- saludo al usuario-->
-                <div class="avatar">AD</div> <!-- avatar del usuario-->
+    <a href="{% url 'inicio_login' %}" class="logout">Cerrar Sesión</a>
+</aside>
+
+<main class="contenido">
+    <header class="encabezado">
+        <h1>Gestión de Clientes</h1>
+        <div class="usuario">
+            <p>¡Hola, Administrador!</p>
+            <div class="avatar">AD</div>
+        </div>
+    </header>
+
+    <div class="contenedor-clientes">
+        <div class="buscador">
+            <input type="text" id="buscarCliente" placeholder="Buscar Cliente por nombre, teléfono, documento o correo...">
+            <button class="btn-verde" id="btnAgregarCliente">Agregar Nuevo Cliente</button>
+        </div>
+
+        <p class="descripcion">Usa esta sección para gestionar los datos de los clientes</p>
+
+        <table class="tabla-clientes">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Documento</th>
+                    <th>Correo</th>
+                    <th>Deuda Pendiente</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.nombre }}</td>
+                    <td>{{ cliente.telefono }}</td>
+                    <td>{{ cliente.documento_identidad }}</td>
+                    <td>{% if cliente.correo %}{{ cliente.correo }}{% else %}-{% endif %}</td>
+                    <td class="{% if cliente.deuda_total > 0 %}rojo{% else %}verde{% endif %}">
+                        ${{ cliente.deuda_total }} COP
+                    </td>
+                    <td>
+                        <button class="btn-editar" 
+                                onclick="abrirEditar('{{ cliente.id }}','{{ cliente.nombre }}','{{ cliente.telefono }}','{{ cliente.documento_identidad }}','{{ cliente.correo }}','{{ cliente.deuda_total }}')">
+                                Editar
+                        </button>
+
+                        <button 
+                            class="btn-saldar" 
+                            onclick="confirmarSaldar('{{ cliente.id }}', this)">
+                            Marcar Saldada
+                        </button>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<!-- ========== MODAL AGREGAR CLIENTE ========== -->
+<div class="modal-oscuro" id="modalAgregarCliente">
+    <div class="modal-contenido">
+        <h2>Nuevo Cliente</h2>
+
+        <form method="POST" action="{% url 'agregar_cliente' %}">
+            {% csrf_token %}
+            
+            <label>Nombre completo</label>
+            <input type="text" name="nombre" required>
+
+            <label>Teléfono</label>
+            <input type="text" name="telefono" required>
+
+            <label>Documento de Identidad</label>
+            <input type="text" name="documento_identidad" required>
+
+            <label>Correo (opcional)</label>
+            <input type="email" name="correo">
+
+            <label>Deuda inicial</label>
+            <input type="number" name="deuda" min="0" value="0">
+
+            <div class="acciones-modal">
+                <button type="submit" class="btn-verde">Guardar Cliente</button>
+                <button type="button" class="btn-cerrar" id="cerrarAgregar">Cancelar</button>
             </div>
-        </header>
-        <!--seccion principal de gestion de clientes-->
+        </form>
+    </div>
+</div>
 
-            <div class="contenedor-clientes"> <!--caja con sombra blanca-->
+<!-- ========== MODAL EDITAR CLIENTE ========== -->
+<div class="modal-oscuro" id="modalEditar">
+    <div class="modal-contenido">
+        <h2>Editar Cliente</h2>
 
-                <!-- Barra de busqueda-->
-                <div class="buscador">
-                    <input type="text" placeholder="Buscar Cliente..." > <!--campo de busqueda-->
-                    <button class="btn-verde">Agregar Nuevo Cliente</button> <!--boton de añadir cliente-->
-                </div>
-                <p class="descripcion">Usa esta seccion para gestionar datos y marcar cuentas como saldados</p>
+        <form method="POST" action="{% url 'editar_cliente' %}">
+            {% csrf_token %}
 
-                <!-- Tabla de clientes-->
-                <table class="tabla-clientes"> <!--Estructura tipo tabla-->
-                    <thead> <!--encabezado de la tabla-->
-                        <tr> <!-- fila de encabezado-->
-                            <th>Nombre</th> <!--columas-->
-                            <th>Telefono</th>
-                            <th>Deuda Pendiente</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody> <!-- cuerpo de la tabla-->
-                        <tr> <!--fila cliente 1-->
-                            <td>Juan Perez</td>
-                            <td>310 123 4567</td>
-                            <td class="rojo">$800,000 COP </td> <!--deuda en rojo-->
-                            <td>
-                                <a href="#" class="editar">Editar</a> <!--editar enlace-->
-                                <button class="btn-saldar">Marcar Saldada</button> <!--boton saltar-->
-                            </td>
-                        </tr>
-                        <tr> <!--fila columna 2-->
-                            <td>Ana Gomez</td>
-                            <td>320 987 6543</td>
-                            <td class="verde">$ 0 COP</td> <!--deuda en verde-->
-                            <td>
-                                <a href="#" class="editar">Editar</a> <!--enlace de editar-->
-                                <span class="saldada">Saldada</span> <!--etiqueta saldada-->
-                            </td>
-                        </tr>
-                    </tbody>
-                </table> 
+            <input type="hidden" id="editar_id" name="id">
+
+            <label>Nombre completo</label>
+            <input type="text" id="editar_nombre" name="nombre" required>
+
+            <label>Teléfono</label>
+            <input type="text" id="editar_telefono" name="telefono" required>
+
+            <label>Documento</label>
+            <input type="text" id="editar_documento" name="documento_identidad" required>
+
+            <label>Correo (opcional)</label>
+            <input type="email" id="editar_correo" name="correo">
+
+            <label>Deuda</label>
+            <input type="number" id="editar_deuda" name="deuda" min="0">
+
+            <div class="acciones-modal">
+                <button type="submit" class="btn-morado">Guardar Cambios</button>
+                <button type="button" class="btn-cerrar" onclick="cerrarEditar()">Cancelar</button>
             </div>
-        </section> 
-    </main> 
+        </form>
+    </div>
+</div>
+
+<script>
+// ----- Modal Agregar -----
+const btnAgregar = document.getElementById("btnAgregarCliente");
+const modalAgregar = document.getElementById("modalAgregarCliente");
+const cerrarAgregar = document.getElementById("cerrarAgregar");
+
+btnAgregar.onclick = () => modalAgregar.style.display = "flex";
+cerrarAgregar.onclick = () => modalAgregar.style.display = "none";
+
+// ----- Modal Editar -----
+const modalEditar = document.getElementById("modalEditar");
+
+function abrirEditar(id, nombre, telefono, documento, correo, deuda) {
+    modalEditar.style.display = "flex";
+    document.getElementById("editar_id").value = id;
+    document.getElementById("editar_nombre").value = nombre;
+    document.getElementById("editar_telefono").value = telefono;
+    document.getElementById("editar_documento").value = documento;
+    document.getElementById("editar_correo").value = correo === "None" ? "" : correo;
+    document.getElementById("editar_deuda").value = deuda;
+}
+
+function cerrarEditar() {
+    modalEditar.style.display = "none";
+}
+
+// ====== BUSCADOR ======
+document.getElementById("buscarCliente").addEventListener("keyup", function () {
+    let filtro = this.value.toLowerCase();
+    let filas = document.querySelectorAll(".tabla-clientes tbody tr");
+
+    filas.forEach(fila => {
+        let nombre = fila.children[0].textContent.toLowerCase();
+        let telefono = fila.children[1].textContent.toLowerCase();
+        let documento = fila.children[2].textContent.toLowerCase();
+        let correo = fila.children[3].textContent.toLowerCase();
+
+        if (
+            nombre.includes(filtro) ||
+            telefono.includes(filtro) ||
+            documento.includes(filtro) ||
+            correo.includes(filtro)
+        ) {
+            fila.style.display = "";
+        } else {
+            fila.style.display = "none";
+        }
+    });
+});
+
+// ====== MARCAR SALDADA ======
+function confirmarSaldar(idCliente, boton) {
+    if (!confirm("¿Seguro que quieres marcar como saldada esta persona?")) {
+        return;
+    }
+
+    fetch(`/marcar_saldada/${idCliente}/`)
+        .then(response => {
+            if (response.ok) {
+                boton.textContent = "Saldada";
+                boton.classList.remove("btn-saldar");
+                boton.classList.add("btn-saldada");
+                boton.disabled = true;
+
+                let fila = boton.closest("tr");
+                let celdaDeuda = fila.querySelector("td:nth-child(5)");
+
+                celdaDeuda.textContent = "$0 COP";
+                celdaDeuda.classList.remove("rojo");
+                celdaDeuda.classList.add("verde");
+            }
+        });
+}
+</script>
+
 </body>
 </html>
