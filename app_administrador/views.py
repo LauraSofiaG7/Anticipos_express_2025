@@ -105,3 +105,38 @@ def marcar_saldada(request, id):
     cliente.save()
 
     return JsonResponse({"ok": True})
+
+def admin_productos(request):
+    productos = Producto.objects.all()
+    return render(request, "administrador/productos.html", {"productos": productos})
+def admin_cuentas(request):
+    cuentas = CuentaPorCobrar.objects.all()
+    return render(request, "administrador/cuentas.html", {"cuentas": cuentas})
+def admin_reportes(request):
+    hoy = date.today()
+    inicio_mes = hoy.replace(day=1)
+
+    # Ventas del día
+    ventas_dia = Venta.objects.filter(fecha=hoy).aggregate(total=Sum("total"))["total"] or 0
+
+    # Ventas del mes
+    ventas_mes = Venta.objects.filter(fecha__gte=inicio_mes).aggregate(total=Sum("total"))["total"] or 0
+
+    # Total clientes
+    total_clientes = Cliente.objects.count()
+
+    # Total productos
+    total_productos = Producto.objects.count()
+
+    # Total deudas por cobrar
+    total_fiados = CuentaPorCobrar.objects.filter(estado="Pendiente").aggregate(total=Sum("monto"))["total"] or 0
+
+    contexto = {
+        "ventas_dia": ventas_dia,
+        "ventas_mes": ventas_mes,
+        "total_clientes": total_clientes,
+        "total_productos": total_productos,
+        "total_fiados": total_fiados,
+    }
+
+    return render(request, "administrador/reportes.html", contexto)
