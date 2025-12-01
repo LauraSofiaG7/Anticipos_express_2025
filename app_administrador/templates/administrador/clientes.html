@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion de Clientes - Anticipo Express</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}"> 
 </head>
 <body>
 
-<!-- Barra lateral -->
 <aside class="barra-lateral">
     <h2 class="logo">
         <span class="icono"></span>
@@ -71,13 +70,20 @@
                                 onclick="abrirEditar('{{ cliente.id }}','{{ cliente.nombre }}','{{ cliente.telefono }}','{{ cliente.documento_identidad }}','{{ cliente.correo }}','{{ cliente.deuda_total }}')">
                                 Editar
                         </button>
-
-                        <button 
-                            class="btn-saldar" 
-                            onclick="confirmarSaldar('{{ cliente.id }}', this)">
-                            Marcar Saldada
-                        </button>
-
+                        
+                        {% if cliente.deuda_total == 0 %}
+                            <button 
+                                class="btn-saldada" 
+                                disabled>
+                                Saldada
+                            </button>
+                        {% else %}
+                            <button 
+                                class="btn-saldar" 
+                                onclick="confirmarSaldar('{{ cliente.id }}', this)">
+                                Marcar Saldada
+                            </button>
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}
@@ -86,7 +92,6 @@
     </div>
 </main>
 
-<!-- ========== MODAL AGREGAR CLIENTE ========== -->
 <div class="modal-oscuro" id="modalAgregarCliente">
     <div class="modal-contenido">
         <h2>Nuevo Cliente</h2>
@@ -117,7 +122,6 @@
     </div>
 </div>
 
-<!-- ========== MODAL EDITAR CLIENTE ========== -->
 <div class="modal-oscuro" id="modalEditar">
     <div class="modal-contenido">
         <h2>Editar Cliente</h2>
@@ -150,6 +154,18 @@
     </div>
 </div>
 
+<div class="modal-oscuro" id="modalSaldar">
+    <div class="modal-contenido">
+        <h2>Confirmación</h2>
+        <p>¿Seguro que quieres marcar como saldada esta persona?</p>
+
+        <div class="acciones-modal">
+            <button class="btn-verde" id="btnConfirmarSaldar">Sí, marcar</button>
+            <button class="btn-cerrar" onclick="cerrarModalSaldar()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
 <script>
 // ----- Modal Agregar -----
 const btnAgregar = document.getElementById("btnAgregarCliente");
@@ -168,6 +184,7 @@ function abrirEditar(id, nombre, telefono, documento, correo, deuda) {
     document.getElementById("editar_nombre").value = nombre;
     document.getElementById("editar_telefono").value = telefono;
     document.getElementById("editar_documento").value = documento;
+    // Manejo de 'None' para campos opcionales
     document.getElementById("editar_correo").value = correo === "None" ? "" : correo;
     document.getElementById("editar_deuda").value = deuda;
 }
@@ -182,6 +199,7 @@ document.getElementById("buscarCliente").addEventListener("keyup", function () {
     let filas = document.querySelectorAll(".tabla-clientes tbody tr");
 
     filas.forEach(fila => {
+        // Asegúrate de que los índices de los hijos coincidan con tus columnas
         let nombre = fila.children[0].textContent.toLowerCase();
         let telefono = fila.children[1].textContent.toLowerCase();
         let documento = fila.children[2].textContent.toLowerCase();
@@ -200,29 +218,65 @@ document.getElementById("buscarCliente").addEventListener("keyup", function () {
     });
 });
 
-// ====== MARCAR SALDADA ======
-function confirmarSaldar(idCliente, boton) {
-    if (!confirm("¿Seguro que quieres marcar como saldada esta persona?")) {
-        return;
-    }
+// ====== LÓGICA DEL MODAL SALDAR ======
+let idClienteSeleccionado = null;
+let botonSeleccionado = null; // Referencia al botón que se hizo clic
 
-    fetch(`/marcar_saldada/${idCliente}/`)
+function confirmarSaldar(idCliente, boton) {
+    idClienteSeleccionado = idCliente;
+    botonSeleccionado = boton; // Guarda la referencia del botón
+    document.getElementById("modalSaldar").style.display = "flex";
+}
+
+function cerrarModalSaldar() {
+    document.getElementById("modalSaldar").style.display = "none";
+}
+
+document.getElementById("btnConfirmarSaldar").onclick = () => {
+    // 1. Llama a tu endpoint de backend para marcar como saldada.
+    // USAMOS LA FUNCIÓN URL DE DJANGO SI FUERA POSIBLE, PERO AQUÍ USAMOS LA RUTA MANUALMENTE CORREGIDA.
+    const urlSaldar = `{% url 'marcar_saldada' 0 %}`.replace('0', idClienteSeleccionado);
+    
+    fetch(urlSaldar)
         .then(response => {
             if (response.ok) {
-                boton.textContent = "Saldada";
-                boton.classList.remove("btn-saldar");
-                boton.classList.add("btn-saldada");
-                boton.disabled = true;
+                // 2. Si el backend responde OK (código 200), actualiza el estado visual:
+                
+                // Cambia el texto
+                botonSeleccionado.textContent = "Saldada";
+                
+                // Cambia las clases CSS (quitas btn-saldar y pones btn-saldada)
+                botonSeleccionado.classList.remove("btn-saldar");
+                botonSeleccionado.classList.add("btn-saldada");
 
-                let fila = boton.closest("tr");
-                let celdaDeuda = fila.querySelector("td:nth-child(5)");
+                // Deshabilita el botón 
+                botonSeleccionado.disabled = true;
+
+                // 3. Actualiza la celda de la deuda:
+                let fila = botonSeleccionado.closest("tr");
+                let celdaDeuda = fila.children[4]; // La 5ta columna (índice 4) es la deuda
 
                 celdaDeuda.textContent = "$0 COP";
                 celdaDeuda.classList.remove("rojo");
                 celdaDeuda.classList.add("verde");
+                
+                // Opcional: Mostrar un mensaje de éxito
+                // alert("Deuda saldada con éxito.");
+
+            } else {
+                // Manejar error si el backend falla
+                console.error("Error al marcar como saldada. Código:", response.status);
+                alert("Hubo un error al intentar saldar la deuda. Inténtalo de nuevo.");
             }
+        })
+        .catch(error => {
+            console.error("Error de red:", error);
+            alert("Error de conexión. Inténtalo de nuevo.");
         });
-}
+
+    // 4. Cierra el modal, independientemente del resultado del fetch
+    cerrarModalSaldar();
+};
 </script>
 
 </body>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse # Importamos HttpResponse
 from django.db.models import Sum
 from datetime import date, timedelta
 
@@ -37,7 +37,8 @@ def admin_inicio(request):
     proximos_5 = hoy + timedelta(days=5)
     pagos_fiados = CuentaPorCobrar.objects.filter(
     estado="Pendiente",
-    fecha_vencimiento__lte=proximos_5   ).order_by("fecha_vencimiento")[:5]
+    fecha_vencimiento__lte=proximos_5 
+    ).order_by("fecha_vencimiento")[:5]
 
     contexto = {
         "ingresos_mes": ingresos_mes,
@@ -66,9 +67,14 @@ def agregar_cliente(request):
     if request.method == "POST":
         nombre = request.POST.get("nombre")
         telefono = request.POST.get("telefono")
-        deuda = request.POST.get("deuda", 0)
+        # Asegúrate de convertir la deuda a número (float o int)
+        try:
+            deuda = float(request.POST.get("deuda", 0))
+        except ValueError:
+            deuda = 0
+
         documento = request.POST.get("documento_identidad")
-        correo = request.POST.get("correo") or None  # correo opcional
+        correo = request.POST.get("correo") or None 
 
         Cliente.objects.create(
             nombre=nombre,
@@ -92,26 +98,55 @@ def editar_cliente(request):
         cliente.telefono = request.POST.get("telefono")
         cliente.documento_identidad = request.POST.get("documento_identidad")
         cliente.correo = request.POST.get("correo") or None
-        cliente.deuda_total = request.POST.get("deuda")
+        
+        # Convertir deuda antes de guardar
+        try:
+            cliente.deuda_total = float(request.POST.get("deuda"))
+        except ValueError:
+            pass # Mantener la deuda si la conversión falla
 
         cliente.save()
 
     return redirect("admin_clientes")
 
 
-def marcar_saldada(request, id):
-    cliente = get_object_or_404(Cliente, id=id)
-    cliente.deuda_total = 0
-    cliente.save()
+# FUNCIÓN CORREGIDA
+def marcar_saldada(request, cliente_id):
+    # Verificamos si la solicitud es GET, como lo hace el fetch del JavaScript
+    if request.method == "GET":
+        try:
+            # 1. Buscar el CLIENTE por su ID
+            cliente = get_object_or_404(Cliente, pk=cliente_id)
 
-    return JsonResponse({"ok": True})
+            # 2. Actualizar la DEUDA TOTAL del cliente a cero
+            cliente.deuda_total = 0
+
+            # 3. Guardar el cambio en la base de datos
+            cliente.save()
+
+            # 4. Devolver una respuesta HTTP 200 (OK) simple
+            # Esto es lo que verifica `response.ok` en el frontend.
+            return HttpResponse(status=200)
+
+        except Exception as e:
+            # Loguea el error en la terminal del servidor (MUY IMPORTANTE para debug)
+            print(f"Error al saldar la deuda del cliente {cliente_id}: {e}")
+            
+            # Devuelve un código 500 para que el frontend sepa que hubo un error
+            return HttpResponse(status=500)
+
+    # Si no es un método GET, devolvemos un error de método no permitido
+    return HttpResponse(status=405)
+
 
 def admin_productos(request):
     productos = Producto.objects.all()
     return render(request, "administrador/productos.html", {"productos": productos})
+
 def admin_cuentas(request):
     cuentas = CuentaPorCobrar.objects.all()
     return render(request, "administrador/cuentas.html", {"cuentas": cuentas})
+
 def admin_reportes(request):
     hoy = date.today()
     inicio_mes = hoy.replace(day=1)

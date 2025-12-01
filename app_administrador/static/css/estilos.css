@@ -1,5 +1,10 @@
+/*
+====================================
+     RESETEO Y BASE
+====================================
+*/
 /*margenes y paddings para todos los elementos*/
-*{
+* {
     margin: 0; /*elimina margenes predeterminados*/
     padding: 0; /*elimina relleno predeterminado*/
     box-sizing: border-box; /*hace que los tamaños incluyan bordes y padding*/
@@ -7,15 +12,20 @@
 }
 
 /*fondo general*/
-body{
+body {
     display: flex; /*coloca la barra lateral y el contenido en la misma fila*/
     min-height: 100vh; /*asegura que ocupe toda la altura de la pantalla*/
     background: linear-gradient(135deg, #0b1d3a, #13294b, #1b3a60 ); /*color de fondo*/
     color: #fff; /*color de texto blanco*/
 }
 
+/*
+====================================
+     BARRA LATERAL
+====================================
+*/
 /*barra de navegacion*/
-.barra-lateral{
+.barra-lateral {
     width: 240px; /*ancho fijo de la barra lateral*/
     background-color: #1e293b; /*color de fondo oscuro*/
     display: flex; /*organiza los elementos verticalmente*/
@@ -25,7 +35,7 @@ body{
 }
 
 /*logo*/
-.barra-lateral .logo{
+.barra-lateral .logo {
     color: #ffffff; /*color blanco*/
     font-size: 1.2em; /*tamaño de fuente*/
     margin-bottom: 30px; /*espacio debajo del logo*/
@@ -33,17 +43,17 @@ body{
 }
 
 /*menu lateral*/
-.menu{
+.menu {
     list-style: none; /*elimina los puntos de la lista*/
 }
 
 /*cada elemento del menu*/
-.menu li{
+.menu li {
     margin: 12px 0; /*espacio entre elementos*/
 }
 
 /*enlaces del menu*/
-.menu li a{
+.menu li a {
     display: block; /*hace que el enlace ocupe todo el ancho*/
     text-decoration: none; /*elimina el subrayado*/
     color: #ffffff; /*color gris claro*/
@@ -53,12 +63,13 @@ body{
 }
 
 /*efecto cuando pasa el mause sobre los enlaces*/
-.menu li a:hover{
+.menu li a:hover,
+.menu li a.activo {
     background-color: #334155; /*fondo mas claro*/
 }
 
 /*cerrar sesion*/
-.logout{
+.logout {
     display: block;
     text-decoration: none;
     text-align: center;
@@ -74,18 +85,23 @@ body{
 }
 
 /*efecto al pasar el mause sobre el boton de cerrar sesion*/
-.logout:hover{
+.logout:hover {
     background-color: #dc2626; /*fondo rojo mas oscuro*/
 }
 
+/*
+====================================
+     CONTENIDO PRINCIPAL Y ENCABEZADO
+====================================
+*/
 /*contenido principal*/
-.contenido{
+.contenido {
     flex: 1; /*ocupado todo el espacio libre al lado de la barra*/
     padding: 30px; /*espacio interno*/
 }
 
 /*titulo y saludo*/
-.encabezado{
+.encabezado {
     display: flex; /*coloca el titulo y el usuario en la misma fila*/
     justify-content: space-between; /*espacio entre el titulo y el usuario*/
     align-items: center; /*centrar verticalmente*/
@@ -100,19 +116,19 @@ body{
 }
 
 /*titulo resumen ejecutivo*/
-.encabezado h1{
+.encabezado h1 {
     font-size: 1.8em; /*tamaño grande*/
     font-weight: 700; /*texto en negrita*/
 }
 
 /*texto hola administrador*/
-.encabezado p{
+.encabezado p {
     font-size: 1em; /*tamaño normal*/
     color: #cbd5e1; /*color gris claro*/
 }
 
 /* contenido del usuario*/
-.usuario{
+.usuario {
     display: flex; 
     align-items: center;
     gap: 10px; /*esapcio entre texto y avatar*/
@@ -121,7 +137,7 @@ body{
 }
 
 /* avatar circular del administrador*/
-.avatar{
+.avatar {
     width: 38px;
     height: 38px;
     border-radius: 50%;
@@ -135,9 +151,13 @@ body{
     box-shadow: 0 0 8px rgb(160, 120, 255, 0.4);
 }
 
-/*CONTENEDOR INICIO*/
+/*
+====================================
+     CONTENEDOR INICIO (TARJETAS)
+====================================
+*/
 /*tarjeta superior*/
-.tarjetas-superiores{
+.tarjetas-superiores {
     display: grid;/*usa cuadriculas*/
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); /*columnas adaptables*/
     gap: 20px; /*espacio entre tarjetas*/
@@ -145,7 +165,7 @@ body{
 }
 
 /*estilo general de las tarjetas*/
-.tarjeta{
+.tarjeta {
     background-color: #ffffff; /*fondo blanco*/
     color: #0f172a; /*texto oscuro*/
     border-radius: 15px; /*bordes redondeados*/
@@ -155,24 +175,24 @@ body{
 }
 
 /*efecto al pasar el mause sobre las tarjetas*/
-.tarjeta:hover{
+.tarjeta:hover {
     transform: translateY(-5px); /*mueve levemente hacia arriba*/
 }
 
 /*titulo de las tarjetas*/
-.tarjeta h3{
+.tarjeta h3 {
     font-size: 1em; /*tamaño mediano*/
     color: #1e293b; /*color oscuro*/
 }
 
 /*numero principal*/
-.tarjeta h2{
+.tarjeta h2 {
     font-size: 1.8em; /*tamaño grande*/
     margin: 10px 0; /*espacio arriba y abajo*/
 }
 
 /*texto adicional*/
-.tarjeta p .tarjeta small{
+.tarjeta p .tarjeta small {
     font-size: 0.9em; /*tamaño pequeño*/
     color: #475569; /*color gris medio*/
 }
@@ -180,34 +200,34 @@ body{
 /*colores segun el tipo de tarjeta*/
 
 /*tarjeta ingresos*/
-.tarjeta.total{
+.tarjeta.total {
     border-left: 6px solid #10b981; /*borde verde*/
 }
 
 /*tarjeta clientes con deuda*/
-.tarjeta.deuda{
+.tarjeta.deuda {
     border-left: 6px solid #f97316; /*borde naranja*/
 }
 
 /*tarjeta productos*/
-.tarjeta.productos{
+.tarjeta.productos {
     border-left: 6px solid #3b82f6; /*borde azul*/
 }
 
 /*tarjeta alertas*/
-.tarjeta.alertas{
+.tarjeta.alertas {
     border-left: 6px solid #ef4444; /*borde rojo*/
 }
 
 /*tarjetas inferiores*/
-.tarjetas-inferiores{
+.tarjetas-inferiores {
     display: grid;/*usa cuadriculas*/
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /*dos columnas si hay espacio*/
     gap: 20px; /*espacio entre tarjetas*/
 }
 
 /*tarjetas grandes inferiores*/
-.tarjeta.grande{
+.tarjeta.grande {
     padding: 25px; /*mas espacio interno*/
 }
 
@@ -219,24 +239,24 @@ body{
 }
 
 /*lista productos en stock*/
-.tarjeta.stock ul{
+.tarjeta.stock ul {
     list-style: none; /*elimina puntos de la lista*/
     margin-top: 10px; /*espacio arriba*/
 }
 
 /*elementos de la lista*/
-.tarjeta.stock li{
+.tarjeta.stock li {
     margin-bottom: 8px; /*espacio entre elementos*/
 }
 
 /*texto rojo cantidades*/
-.rojo{
+.rojo {
     color: #dc2626; /*color rojo*/
     font-weight: bold; /*texto en negrita*/
 }
 
 /*boton amarillo*/
-.amarillo{
+.amarillo {
     display: inline-block;
     text-decoration: none;
     transition: 0.3s;
@@ -252,25 +272,25 @@ body{
 }
 
 /*efecto al pasar el mause por el boton amarillo*/
-.amarillo:hover{
+.amarillo:hover {
     background-color: #eab308; /*color amarillo*/
 }
 
 /*tarjeta pagos proximos*/
-.tarjeta.pagos{
+.tarjeta.pagos {
     background-color: #e0e7ff; /*fondo azul*/
     border-left: 6px solid #6366f1; /*borde azul*/
     color: #1e3a8a; /*texto azul*/
 }
 
 /*clientes dentro de pagos*/
-.tarjeta.pagos ul{
+.tarjeta.pagos ul {
     list-style: none; /*quita viñetas*/
-    margin-top: 10px; /*espacio*/  
+    margin-top: 10px; /*espacio*/ 
 }
 
 /*elementos lista de pagos*/
-.tarjeta.pagos li{
+.tarjeta.pagos li {
     margin-bottom: 8px; /*espacio entre lineas*/
 }
 
@@ -298,9 +318,13 @@ body{
 /*efecto al pasar el mause por el boton azul*/
 .azul:hover {
     background-color: #4f46e5;
-    }
+}
 
-/*CONTENEDOR DE CLIENTES */
+/*
+====================================
+     CONTENEDOR CLIENTES
+====================================
+*/
 .contenedor-clientes {
     background-color: white; /* fondo blanco */
     border-radius: 12px; /* bordes redondeados */
@@ -340,7 +364,7 @@ body{
     font-weight: 600; /* texto en negrita */
     border-radius: 8px; /* bordes redondeados */
     cursor: pointer; /* cambia el cursor al pasar por encima */
-    transition:  0.2s; /* transición suave */
+    transition:  0.2s; /* transición suave */
 }
 
 .btn-verde:hover {
@@ -356,7 +380,7 @@ body{
 /* ==== TABLA ==== */
 .tabla-clientes { 
     width: 100%; /* ocupa todo el ancho del contenedor */
-    border-collapse: collapse;  /* elimina espacios entre celdas */
+    border-collapse: collapse; /* elimina espacios entre celdas */
     font-size: 0.95rem; /* tamaño de fuente */
 }
 
@@ -381,30 +405,33 @@ body{
     background-color: #f9fafb; /* fondo gris claro al pasar el mouse */
 }
 
-/* ==== COLORES DE DEUDA ==== */
-.rojo {
+/* ==== COLORES DE DEUDA Y ACCIONES ==== */
+.tabla-clientes .rojo {
     color: #dc2626; /* texto de deuda pendiente color rojo color rojo */
     font-weight: 600; /* texto en negrita */
 }
 
-.verde {
+.tabla-clientes .verde {
     color: #16a34a; /* texto sin deuda color verde */
     font-weight: 600; /* texto en negrita */
 }
 
-/* ==== ACCIONES ==== */
-.editar {
+.btn-editar {
     color: #3b82f6; /* texto editar color azul */
-    text-decoration: none; /* sin subrayado */
+    background: none;
+    border: none;
+    cursor: pointer;
     font-weight: 500; /* peso de fuente medio */
     margin-right: 8px; /* espacio a la derecha */
+    transition: text-decoration 0.2s;
 }
 
-.editar:hover {
+.btn-editar:hover {
     text-decoration: underline; /* subrayado al pasar el mouse */
 }
 
 .btn-saldar {
+    /* Estilo para 'Marcar Saldada' */
     background-color: #bbf7d0; /* fondo verde claro */
     color: #065f46; /* texto verde oscuro */
     border: none; /* sin borde */
@@ -412,18 +439,31 @@ body{
     padding: 0.4rem 0.7rem; /* espacio interno */
     font-weight: 600; /* texto en negrita */
     cursor: pointer; /* cambia el cursor al pasar por encima */
+    transition:  0.2s; /* transición suave */
 }
 
 .btn-saldar:hover { 
     background-color: #86efac; /* fondo verde más claro */
 }
 
-.saldada {
-    color: #9ca3af; /* texto gris */
-    font-weight: 600; /* texto en negrita */
+/* NUEVO ESTILO: Estilo para el botón cuando ya está 'Saldada' */
+.btn-saldada {
+    background-color: #e5e7eb !important; /* fondo gris claro */
+    color: #6b7280 !important; /* texto gris oscuro */
+    cursor: default !important; /* Cursor normal, no de mano */
+    opacity: 1;
+    /* Copiar estilos de padding y borde del btn-saldar para mantener la consistencia */
+    border: none; 
+    border-radius: 8px; 
+    padding: 0.4rem 0.7rem;
+    font-weight: 600;
 }
 
-/*CONTENEDOR PRODUCTOS*/
+/*
+====================================
+     CONTENEDOR PRODUCTOS
+====================================
+*/
 .paneles {
     display: grid; /*usa un diseño de cuadriculas*/
     grid-template-columns: 2fr 1fr; /*define dos columnas la primera ocupa el doble de ancho que la segunda*/
@@ -431,25 +471,25 @@ body{
 }
 
 /*panel de producto*/
-.panel-productos{
+.panel-productos {
     background: white; /*fondo blanco*/
     border-radius: 12px; /*bordes redondeados*/
     padding: 25px; /*espacio interno alrededor del contendor*/
     box-shadow: 0 2px 6px rgba(0,0,0,0.1); /*sombra suave*/
 }
 
-.panel-productos h3{
+.panel-productos h3 {
     color: #1e293b; /*color oscuro*/
     margin-bottom: 5px; /*espacio debajo del titulo*/
 }
 
-.panel-productos p{
+.panel-productos p {
     color: #64748b; /*color gris para el texto descriptivo*/
     margin-bottom: 20px; /*espacio debajo del texto descriptivo*/
 }
 
 /*formulario*/
-.form-productos .fila{
+.form-productos .fila {
     display: flex; /*coloca los elementos inputs en fila*/
     gap: 15px; /*espacio entre los inputs*/
     margin-bottom: 15px; /*espacio debajo de cada fila*/
@@ -463,8 +503,9 @@ body{
     border: 1px solid #cbd5e1; /*borde gris claro*/
     border-radius: 8px; /*bordes redondeados*/
     font-size: 0.95em; /*tamaño de fuente*/
-    outline: none; /*elimina el contorno  azul predetermidado al enfocar el campo*/
+    outline: none; /*elimina el contorno  azul predetermidado al enfocar el campo*/
     transition: 0.2s; /*transicion suave*/
+    color: #1e293b; /* Asegura el color de texto correcto en los campos */
 }
 
 .form-productos input:focus,
@@ -474,7 +515,7 @@ body{
     box-shadow: 0 0 4px rgba(59, 130, 246, 0.3); /*brillo sombra azul suave*/
 }
 
-.form-productos button{
+.form-productos button {
     width: 100%; /*ocupa todo el ancho del contenedor*/
     background-color: #2563eb; /*fondo azul*/
     color: white; /*texto blanco*/
@@ -486,7 +527,7 @@ body{
     transition: 0.3s; /*transicion suave*/
 }
 
-.form-productos button:hover{
+.form-productos button:hover {
     background-color: #1d4ed8; /*fondo azul mas oscuro*/
 }
 
@@ -530,24 +571,24 @@ body{
 }
 
 /*panel de categoria*/
-.panel-categorias{
+.panel-categorias {
     background: white; /*fondo blanco*/
     border-radius: 12px; /*bordes redondeados*/
     padding: 25px; /*espacio interno alrededor del contendedor*/
     box-shadow: 0 2px 6px rgba(0,0,0,0.1); /*sombra suave*/
 }
 
-.panel-categorias h3{
+.panel-categorias h3 {
     color: #1e293b; /*color oscuro*/
     margin-bottom: 5px; /*espacio debajo del titulo*/
 }
 
-.panel-categorias p{
+.panel-categorias p {
     color: #64748b; /*color gris para el texto descriptivo*/
     margin-bottom: 15px; /*espacio debajo del texto descriptivo*/
 }
 
-.panel-categorias input{
+.panel-categorias input {
     width: 100%; /*ocupa todo ell ancho del contenedor*/
     padding: 10px; /*espacio interno*/
     border: 1px solid #cbd5e1; /*borde gris claro*/
@@ -555,7 +596,7 @@ body{
     margin-bottom: 10px; /*espacio debajo del input*/
 }
 
-.panel-categorias button{
+.panel-categorias button {
     width: 100%; /*ocupa todo el ancho del contenedor*/
     background-color: #9b35f2; /*fondo morado*/
     color: white; /*texto blanco*/
@@ -567,8 +608,8 @@ body{
     transition: 0.3s; /*transicion suave*/
 }
 
-.panel-categorias button:hover{
-    background-color: #7a16d1;/*al pasar el mause se vuelve mas oscuro*/
+.panel-categorias button:hover {
+    background-color: #000000;/*al pasar el mause se vuelve mas oscuro*/
 }
 
 .lista-categorias {
@@ -577,7 +618,7 @@ body{
     margin-top: 15px; /*espacio encima de la lista*/
 }
 
-.lista-categorias li{
+.lista-categorias li {
     display: flex; /*alinea texto y enlace en la misma linea*/
     justify-content: space-between; /*separa el texto y el enlace a los extremos */
     align-items: center; /*centra verticalmente los elementos*/
@@ -598,19 +639,23 @@ body{
     text-decoration: underline; /* Subraya el enlace al pasar el mouse */
 }
 
-/*CONTENEDOR CUENTAS*/
+/*
+====================================
+     CONTENEDOR CUENTAS
+====================================
+*/
 /*panel cuentas por cobrar*/
 .panel-cobros {
     background: white; /* fondo blanco del panel */
-    border-radius: 12px;  /* bordes redondeados suaves */
-    padding: 25px;  /* espaciado interior */
+    border-radius: 12px; /* bordes redondeados suaves */
+    padding: 25px; /* espaciado interior */
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* sombra ligera para dar relieve */
     margin-top: 20px; /* separacion superior a el encabezado */
 }
 
-/*Contenedor general del panel  */
-.panel-cobros h2{
-    font-size: 1.3rem;  /* define el tamaño de fuente del titulo principal */
+/*Contenedor general del panel  */
+.panel-cobros h2 {
+    font-size: 1.3rem; /* define el tamaño de fuente del titulo principal */
     margin-bottom: 8px; /*añade espacios inferiores para separar del texto siguiente */
 }
 
@@ -620,18 +665,14 @@ body{
     font-weight: normal; /* quita el negrito del texto dentro del span */
 }
 
-.descripcion {
-    color: #64748b;/* aplica color gris claro al texto descriptivo */
-    font-size: 0.95rem; /* ajusta el tamaño del texto un poco menor al estandar */
-    margin-bottom: 18px; /* agrega espacio inferior antes del siguiente bloque */
-}
+/* El .descripcion global aplica aquí, no duplicamos */
 
 /* Tarjeta blanca */
 .tarjeta-cobros {
     background-color: white;/* fondo blanco para la tarjeta */
     border-radius: 12px; /* bordes redondeados para suavizar las esquinas */
-    padding: 25px;  /* espaciado interno uniforme en toda la tarjeta */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);  /* sombra sutil para darle relieve al panel */
+    padding: 25px; /* espaciado interno uniforme en toda la tarjeta */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* sombra sutil para darle relieve al panel */
 }
 
 /* Buscador y Boton */
@@ -639,18 +680,19 @@ body{
     display: flex; /* usa flexbox para alinear elementos en una fila */
     justify-content: space-between;/* espacia el buscador y el boton a extremos opuestos */
     align-items: center; /* centra verticalmente los elementos */
-    margin-bottom: 20px;  /* espacio inferior antes de la tabla */
-    gap: 10px;  /* espacio horizontal entre el input y el boton */
+    margin-bottom: 20px; /* espacio inferior antes de la tabla */
+    gap: 10px; /* espacio horizontal entre el input y el boton */
 }
 
 .acciones-busqueda input {
     flex: 1; /* el input ocupa todo el espacio libre disponible */
-    padding: 10px 12px;  /* espaciado interno para texto */
-    border: 1px solid #cbd5e1;  /* Borde gris claro */
+    padding: 10px 12px; /* espaciado interno para texto */
+    border: 1px solid #cbd5e1; /* Borde gris claro */
     border-radius: 8px;/* bordes redondeados */
-    font-size: 0.95rem;   /* Tamaño de texto mas pequeña del normal */
-    outline: none;  /* elimina el borde azul predeterminado al hacer foco */
+    font-size: 0.95rem; /* Tamaño de texto mas pequeña del normal */
+    outline: none; /* elimina el borde azul predeterminado al hacer foco */
     transition: 0.2s;/* Transicion suave para efectos al hacer foco */
+    color: #1e293b; /* Asegura el color de texto correcto */
 }
 
 .acciones-busqueda input:focus {
@@ -659,7 +701,7 @@ body{
 }
 
 .btn-informe {
-    background-color: #4f46e5;  /* color morado para el boton */
+    background-color: #4f46e5; /* color morado para el boton */
     color: white;/* Texto blanco para contraste */
     border: none; /* elimina el borde predeterminado */
     border-radius: 8px; /* bordes redondeados */
@@ -687,14 +729,14 @@ body{
 
 .tabla-cobros th {
     color: #475569;/* color gris oscuro para los encabezados */
-    padding: 10px 8px;  /*espaciado interno */
+    padding: 10px 8px; /*espaciado interno */
     font-weight: 600; /* negrita para destacar los titulos */
 }
 
 .tabla-cobros td {
-    padding: 10px 8px;  /* espaciado interno de las celdas */
+    padding: 10px 8px; /* espaciado interno de las celdas */
     border-bottom: 1px solid #e2e8f0; /* linea que divide entre filas */
-    color: #1e293b;   /* Color del texto principal*/
+    color: #1e293b; /* Color del texto principal*/
 }
 
 /* Colores*/
@@ -723,7 +765,11 @@ body{
     text-decoration: underline;/*subraya el enlace al pasar el cursor */
 }
 
-/*CONTENEDOR REPORTES*/
+/*
+====================================
+     CONTENEDOR REPORTES
+====================================
+*/
 /* ======== PANEL DE REPORTES ======== */
 .panel-reportes {
     padding: 10px;
@@ -735,11 +781,7 @@ body{
     margin-bottom: 6px;
 }
 
-.descripcion {
-    color: #64748b;
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-}
+/* El .descripcion global aplica aquí, no duplicamos */
 
 /* ======== TARJETA PRINCIPAL ======== */
 .tarjeta-reportes {
@@ -766,13 +808,14 @@ body{
     background-color: white;
     outline: none;
     cursor: pointer;
+    color: #1e293b; /* Asegura el color de texto correcto */
 }
 
 .acciones-reportes select:focus {
     border-color: #0d9488;
 }
 
-/* Botón verde */
+/* Botón verde (Reportes) */
 .btn-generar {
     background-color: #0d9488;
     color: white;
@@ -853,37 +896,14 @@ body{
     border: 1px solid #e2e8f0;
 }
 
+/*
+====================================
+     MODALES (Ventanas Emergentes)
+====================================
+*/
 
-
-/*Pantallas pequeñas*/
-
-@media (max-width: 768px) {
-    body { 
-        flex-direction: column; /*coloca la barra lateral arriba y el contenido abajo*/
-    }
-
-    .barra-lateral{
-        width: 100%; /*barra lateral ocupa todo el ancho*/
-        border-radius: 0 ; /*sin bordes redondos*/
-        flex-direction: row; /*menu en la fila*/
-        justify-content: space-between; /*espacio entre elementos*/
-        align-items: center; /*centrar verticalmente*/
-    }
-
-    .menu{
-        display: flex; /*coloca los elementos en fila*/
-        gap: 10px; /*espacio entre elementos*/
-    }
-
-    .logout{
-        margin-top: 0; /*sin margen superior*/
-        padding: 8px 15px; /*reduce tamaño del boton*/
-    }
-}
-
-
-/* Fondo oscuro */
-.modal {
+/* Fondo oscuro general para todos los modales */
+.modal-oscuro {
     display: none;
     position: fixed;
     top: 0;
@@ -896,125 +916,176 @@ body{
     z-index: 9999;
 }
 
-/* Caja blanca */
+/* Caja blanca para todos los modales */
 .modal-contenido {
-    background: white;
+    background: #ffffff;
+    width: 400px; /* Ancho unificado y ligeramente más ancho para campos */
     padding: 25px;
-    width: 400px;
     border-radius: 12px;
-    animation: aparecer 0.2s ease-out;
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
+    animation: aparecer 0.3s ease;
+    text-align: left; /* Alineación a la izquierda por defecto para formularios */
+}
+
+/* Modales de Confirmación (Saldar) con texto centrado */
+#modalSaldar .modal-contenido {
+    width: 380px;
+    text-align: center;
 }
 
 @keyframes aparecer {
-    from { transform: scale(0.9); opacity: 0; }
-    to   { transform: scale(1); opacity: 1; }
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 .modal-contenido h2 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: #1e293b; /* Título oscuro */
+    font-size: 1.5rem;
 }
 
-/* Labels dentro del modal */
+/* Estilos de inputs y labels dentro de los modales (Unificado) */
 .modal-contenido label {
     display: block;
-    margin-top: 12px;
-    font-weight: bold;
-    color: #1e293b !important; /* gris oscuro, bien visible sobre fondo blanco */
-    font-size: 0.95rem; /* tamaño legible */
+    margin-top: 15px;
+    font-weight: 600;
+    color: #1e293b; 
+    font-size: 0.9rem;
 }
 
-.modal-contenido input {
+.modal-contenido input,
+.modal-contenido select {
     width: 100%;
-    padding: 7px;
-    margin-top: 4px;
+    padding: 10px;
+    margin-top: 5px;
     border-radius: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid #cfcfcf;
+    outline: none;
+    transition: border-color 0.2s;
+    color: #1e293b; /* Asegura el color de texto correcto */
 }
 
+.modal-contenido input:focus,
+.modal-contenido select:focus {
+    border-color: #7b2df5; /* Morado para enfocar */
+}
+
+
+/* Contenedor de botones en modales - Solución al espaciado */
 .acciones-modal {
-    margin-top: 20px;
+    margin-top: 25px; /* Espacio superior para separarse del último input/label */
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    gap: 20px; /* Espacio uniforme entre los botones */
 }
 
-
-/* Fondo oscuro */
-.modal-oscuro {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-/* Caja del modal */
-.modal-contenido {
-  background: #ffffff;
-  width: 380px;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
-  animation: aparecer 0.3s ease;
-  text-align: center;
-}
-
-@keyframes aparecer {
-  from { transform: scale(0.7); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.modal-contenido h2 {
-  margin-bottom: 10px;
-  color: #5e2ca5;
-}
-
-.modal-contenido input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 12px;
-  border-radius: 6px;
-  border: 1px solid #cfcfcf;
-}
-
+/* Estilo de botones */
 .btn-morado {
-  margin-top: 18px;
-  width: 100%;
-  padding: 10px;
-  background: #7b2df5;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
+    width: 100%;
+    padding: 10px;
+    background: #7b2df5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
 }
 
 .btn-morado:hover {
-  background: #6925d3;
+    background: #6925d3;
 }
 
 .btn-cerrar {
-  margin-top: 10px;
-  width: 100%;
-  padding: 10px;
-  background: #d9534f;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    background: #d9534f; /* Rojo de cancelar/cerrar */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
 }
 
 .btn-cerrar:hover {
-  background: #c9302c;
+    background: #c9302c;
 }
 
-.btn-saldada {
-    background-color: #4caf50 !important;
-    color: white !important;
-    opacity: 0.8;
-    cursor: default !important;
+/*
+====================================
+     RESPONSIVE
+====================================
+*/
+@media (max-width: 1024px) {
+    /* Ajustes para pantallas medianas (tablets) */
+    .paneles {
+        grid-template-columns: 1fr; /* Una sola columna para productos y categorías */
+    }
+}
+
+
+@media (max-width: 768px) {
+    body { 
+        flex-direction: column; /*coloca la barra lateral arriba y el contenido abajo*/
+    }
+
+    .barra-lateral {
+        width: 100%; /*barra lateral ocupa todo el ancho*/
+        border-radius: 0 ; /*sin bordes redondos*/
+        flex-direction: row; /*menu en la fila*/
+        justify-content: space-between; /*espacio entre elementos*/
+        align-items: center; /*centrar verticalmente*/
+    }
+
+    .barra-lateral .logo {
+        margin-bottom: 0;
+        font-size: 1.1em;
+    }
+
+    .menu {
+        display: flex; /*coloca los elementos en fila*/
+        gap: 10px; /*espacio entre elementos*/
+    }
+
+    .menu li a {
+        padding: 5px 10px; /* reduce el padding del menu */
+    }
+
+    .logout {
+        margin-top: 0; /*sin margen superior*/
+        padding: 8px 15px; /*reduce tamaño del boton*/
+    }
+
+    .encabezado {
+        padding: 10px 15px; /* Reduce padding del encabezado */
+        margin-bottom: 30px;
+    }
+
+    .encabezado h1 {
+        font-size: 1.5em; /* Reduce tamaño del título */
+    }
+
+    .buscador {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .buscador input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .contenedor-clientes, .tarjeta-reportes, .panel-cobros {
+        padding: 1rem;
+    }
+
+    .resumen-reportes {
+        flex-direction: column; /* Apila las tarjetas de resumen */
+    }
+
+    .modal-contenido {
+        width: 90%; /* Ajusta el ancho del modal para pantallas pequeñas */
+        margin: 15px;
+    }
 }

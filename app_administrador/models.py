@@ -2,7 +2,7 @@ from django.db import models
 
 
 # ===========================
-#   USUARIO
+#   USUARIO
 # ===========================
 class Usuario(models.Model):
     nombre = models.CharField(max_length=100)
@@ -23,23 +23,24 @@ class Usuario(models.Model):
 
 
 # ===========================
-#   CLIENTE
+#   CLIENTE
 # ===========================
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100)
     telefono = models.CharField(max_length=20)
-    correo = models.EmailField(blank=True, null=True, unique=False)
-    direccion = models.CharField(max_length=100)
-    documento_identidad = models.CharField(max_length=20, unique=True)
-    firma = models.CharField(max_length=50)
-    deuda_total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    documento_identidad = models.CharField(max_length=50)
+    correo = models.EmailField(null=True, blank=True)
+    # Importante: Usar DecimalField para dinero real para evitar problemas de precisión,
+    # pero mantendremos IntegerField como lo tenías.
+    deuda_total = models.DecimalField(max_digits=12, decimal_places=2, default=0) 
+    estado = models.CharField(max_length=50, default="Activo") 
 
     def __str__(self):
         return f"{self.nombre} - {self.documento_identidad}"
 
 
 # ===========================
-#   CATEGORÍA
+#   CATEGORÍA
 # ===========================
 class Categoria(models.Model):
     nombre = models.CharField(max_length=100)
@@ -49,7 +50,7 @@ class Categoria(models.Model):
 
 
 # ===========================
-#   PRODUCTO
+#   PRODUCTO
 # ===========================
 class Producto(models.Model):
     class Condicion(models.TextChoices):
@@ -80,7 +81,7 @@ class Producto(models.Model):
 
 
 # ===========================
-#   VENTA
+#   VENTA
 # ===========================
 class Venta(models.Model):
     class MetodoPago(models.TextChoices):
@@ -102,7 +103,7 @@ class Venta(models.Model):
 
 
 # ===========================
-#   DETALLE VENTA
+#   DETALLE VENTA
 # ===========================
 class DetalleVenta(models.Model):
     venta = models.ForeignKey("Venta", on_delete=models.CASCADE, related_name="detalles")
@@ -115,7 +116,7 @@ class DetalleVenta(models.Model):
 
 
 # ===========================
-#   CUENTAS POR COBRAR
+#   CUENTAS POR COBRAR
 # ===========================
 class CuentaPorCobrar(models.Model):
     class Estado(models.TextChoices):
@@ -134,7 +135,7 @@ class CuentaPorCobrar(models.Model):
 
 
 # ===========================
-#   CAJA (Módulo Cajero)
+#   CAJA (Módulo Cajero)
 # ===========================
 class Caja(models.Model):
     cajero = models.ForeignKey("Usuario", on_delete=models.CASCADE, related_name="cajas")
@@ -148,7 +149,7 @@ class Caja(models.Model):
 
 
 # ===========================
-#   ROL (Opcional)
+#   ROL (Opcional)
 # ===========================
 class Rol(models.Model):
     nombre = models.CharField(max_length=100)
@@ -159,7 +160,7 @@ class Rol(models.Model):
 
 
 # ===========================
-#   PRÉSTAMO
+#   PRÉSTAMO
 # ===========================
 class Prestamo(models.Model):
     class Estado(models.TextChoices):
@@ -179,7 +180,7 @@ class Prestamo(models.Model):
 
 
 # ===========================
-#   CONDICIÓN PRODUCTO
+#   CONDICIÓN PRODUCTO
 # ===========================
 class CondicionProducto(models.Model):
     producto = models.ForeignKey("Producto", on_delete=models.CASCADE, related_name="condiciones")

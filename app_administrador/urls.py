@@ -9,6 +9,7 @@ urlpatterns = [
     path('reportes/', views.admin_reportes, name="admin_reportes"),
     path('admin/clientes/agregar/', views.agregar_cliente, name='agregar_cliente'),
     path('clientes/editar/', views.editar_cliente, name='editar_cliente'),
-    path('marcar_saldada/<int:id>/', views.marcar_saldada, name='marcar_saldada')
-
+    
+    # RUTA CORREGIDA: Cambiada para que coincida con la llamada del JavaScript
+    path("marcar_saldada/<int:cliente_id>/", views.marcar_saldada, name="marcar_saldada"),
 ]
