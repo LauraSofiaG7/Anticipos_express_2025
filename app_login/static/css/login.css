@@ -198,3 +198,57 @@ input:focus, select:focus {
 .link:hover {
     text-decoration: underline;
 }
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+    width: 100%;
+    padding: 10px 15px;               /* más alto y más ancho visualmente */
+    margin-bottom: 25px;
+    border: 1px solid #2f3e5d;
+    border-radius: 12px;              /* más cuadrado */
+    font-size: 15px;
+    background-color: #fdfaf6;
+    color: #0b1d3a;
+    transition: 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #f4c542;
+    outline: none;
+    box-shadow: 0 0 8px #f4c542;
+}
+
+/* Botón */
+.btn {
+    background-color: #f4c542;
+    color: #0b1d3a;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    border-radius: 12px;              /* más cuadrado */
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #d9ab32;
+}
+
+/* Enlace debajo del formulario */
+.link {
+    display: block;
+    text-align: center;
+    color: #f4c542;
+    font-size: 15px;
+    margin-top: 15px;
+    text-decoration: none; 
+    margin-bottom: 25px
+}
+
+.link:hover {
+    text-decoration: underline;
+}

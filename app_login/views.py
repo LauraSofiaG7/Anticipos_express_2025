@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from app_administrador.models import Usuario
+from django.contrib.auth.hashers import make_password
 
 def inicio_view(request):
     return render(request, 'login/inicio.html')
@@ -49,9 +50,45 @@ def login_view(request):
             return redirect("vendedor_nueva_venta")
 
         elif rol == "Cajero":
-            return redirect("cajero_registro")
+            return redirect("ventas_del_dia")
 
         elif rol == "Prestamos":
             return redirect("admi_prestamos_gestion")
 
     return render(request, "login/contraseña.html")
+    
+def olvide_contraseña_view(request):
+    if request.method == "POST":
+        correo = request.POST.get("correo")
+        rol = request.POST.get("rol")
+
+        usuario = Usuario.objects.filter(correo=correo, rol=rol).first()
+
+        if usuario is None:
+            messages.error(request, "No existe un usuario con ese correo y rol.")
+            return render(request, "login/olvide_contraseña.html")
+
+        return redirect("restablecer_contraseña", usuario_id=usuario.id)
+
+    return render(request, "login/olvide_contraseña.html")
+
+
+
+def restablecer_contraseña_view(request, usuario_id):
+    usuario = Usuario.objects.get(id=usuario_id)
+
+    if request.method == "POST":
+        nueva = request.POST.get("nueva")
+        confirmar = request.POST.get("confirmar")
+
+        if nueva != confirmar:
+            messages.error(request, "Las contraseñas no coinciden.")
+            return render(request, "login/restablecer_contraseña.html")
+
+        usuario.contraseña = make_password(nueva)
+        usuario.save()
+
+        messages.success(request, "Contraseña actualizada exitosamente.")
+        return redirect("inicio_login")
+
+    return render(request, "login/restablecer_contraseña.html")
